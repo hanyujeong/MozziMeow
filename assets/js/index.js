@@ -37,5 +37,4 @@ const categoryCardHTML = (imgPath, viewPath) => {
 
 
 // Function Running
-pageNumMaker();
 categoryCardMaker();
