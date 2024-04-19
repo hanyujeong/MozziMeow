@@ -1,43 +1,17 @@
-const viewFolderPath = './views/';
-const imageFolderPath = './assets/img/';
 
-const categoryFolderPath = viewFolderPath + 'category/';
-const category = [
-    'category', 'category', 'category', 'category', 'category',
-    'category', 'category', 'category', 'category', 'category',
-];
-
-const listFolderPath = viewFolderPath + 'detail/';
-const list = [
-    'test1',
-    'test2',
-];
-
-const parseHTML = (path) => {
-    return path + ".html";
-}
-
-const parsePNG = (path) => {
-    return path + ".png";
-}
-
-const pageNumDiv = document.getElementById("page-num");
-const pageNumMaker = () => {
-    for(let i = 0; i < category.length; i++) {
-        const categoryPageNum = `<a href=#> ${i + 1} </a>`
-        pageNumDiv.innerHTML += categoryPageNum;
-    }
-}
 
 const categoryCardList = document.getElementById("category-card-list");
 const categoryCardMaker = () => {
+
     for(let i = 0; i < category.length; i++) {
-        const categoryImgPath = parsePNG(imageFolderPath + category[i]);
-        const categoryViewPath = parseHTML(categoryFolderPath + category[i]);
+        const categoryImgPath = parsePNG(`${imageFolderPath}${category[i]}`);
+        const categoryViewPath = parseHTML(`${categoryFolderPath}${category[i]}`);
+        
         const card = categoryCardHTML(categoryImgPath, categoryViewPath);
         categoryCardList.innerHTML += card;
     }
 }
+
 const categoryCardHTML = (imgPath, viewPath) => {
     const card =
     `<div class="col">
