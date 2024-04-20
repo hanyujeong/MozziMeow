@@ -13,6 +13,8 @@ const categoryListDictionary = {
     'category2' : [
         'list1', 'list2', 'list1', 'list2', 'list1',
         'list1', 'list2', 'list1', 'list2', 'list1',
+        'list1', 'list2', 'list1', 'list2', 'list1',
+        'list1', 'list2', 'list1', 'list2', 'list1',
     ],
 }
 

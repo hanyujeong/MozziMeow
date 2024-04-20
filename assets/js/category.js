@@ -1,3 +1,8 @@
+const categorys = Object.keys(categoryListDictionary);
+
+let curPageNum = 0;
+const perPageListCount = 6;
+
 let selectCategoryName = "";
 const getSelectCategoryName = () => {
     const pathname = window.location.pathname;
@@ -7,10 +12,15 @@ const getSelectCategoryName = () => {
     selectCategoryName = categoryName;
 }
 
+let selectCategoryList = [];
+let selectCategoryListCount = 0;
+const getSelectCategoryList = () => {
+    selectCategoryList = categoryListDictionary[selectCategoryName];
+    selectCategoryListCount = selectCategoryList.length;
+}
+
 const categorySidebarNav = document.getElementById("sidebar-nav");
 const categorySidebsarNavMaker = () => {
-    const categorys = Object.keys(categoryListDictionary);
-
     for(let i = 0; i < categorys.length; i++) {
         const categoryName = categorys[i];
         const categoryViewPath = parseHTML(`${categoryName}`);
@@ -32,19 +42,25 @@ const sidebarNavHTML = (viewPath, categoryName, count) => {
     return sidebarNav;
 }
 
-let pageNum = 0;
-const pageCategoryCount = 6;
 const categoryCardList = document.getElementById("category-card-list");
 const categoryListCardMaker = () => {
+    categoryCardList.innerHTML = "";
 
-    const categoryList = categoryListDictionary[selectCategoryName];
-    for(let i = 0; i < pageNum + pageCategoryCount; i++) {
-        const categoryImgPath = parsePNG(`../../${imageFolderPath}list/${categoryList[i]}`);
-        const categoryViewPath = parseHTML(`../../${listFolderPath}${categoryList[i]}`);
+    let startListNum = curPageNum * perPageListCount;
+    let lastListNum = startListNum + perPageListCount;
+    
+    //Check lack list count of last page
+    const lackPageListCount = perPageListCount - (selectCategoryListCount - startListNum);
+    lastListNum -= (lackPageListCount > 0 ? lackPageListCount : 0);
+    for(let i = startListNum; i < lastListNum; i++) {
+        const categoryImgPath = parsePNG(`../../${imageFolderPath}list/${selectCategoryList[i]}`);
+        const categoryViewPath = parseHTML(`../../${listFolderPath}${selectCategoryList[i]}`);
         
         const card = categoryCardHTML(categoryImgPath, categoryViewPath);
         categoryCardList.innerHTML += card;
     }
+
+    window.scrollTo({top:0, behavior: "smooth"});
 }
 
 const categoryCardHTML = (imgPath, viewPath) => {
@@ -72,17 +88,49 @@ const categoryCardHTML = (imgPath, viewPath) => {
 
 const pageNumDiv = document.getElementById("page-num");
 const pageNumMaker = () => {
-    const categoryList = categoryListDictionary[selectCategoryName];
-    for(let i = 0; i < categoryList.length; i++) {
-        const categoryListPageNum = `<a href=#> ${i + 1} </a>`
+    const categorysQuatient = parseInt(selectCategoryListCount / perPageListCount);
+    const categorysRemainder = selectCategoryListCount % perPageListCount;
+
+    // Check Remain List Count and If Remain, add 1Page
+    const categoryPageCount = categorysRemainder > 0 ? categorysQuatient + 1 : categorysQuatient;
+    for(let i = 0; i < categoryPageCount; i++) {
+        const categoryListPageNum = `<a href="javascript:pageListChange(${i})">${i + 1}</a>`
 
         pageNumDiv.innerHTML += categoryListPageNum;
     }
 }
 
+const pageListChange = (selectPageNum) => {
+    curPageNum = selectPageNum;
+
+    categoryListCardMaker();
+    preNextPageButton();
+}
+
+const prePageButton = document.getElementById("pre-page-button");
+const nextPageButton = document.getElementById("next-page-button");
+const preNextPageButton = () => {
+    prePageButton.innerHTML = "";
+    nextPageButton.innerHTML = "";
+
+    if(curPageNum != 0) {
+        prePageButton.innerHTML += pageButtonHTML(curPageNum - 1, "pre"); 
+    }
+    if(selectCategoryListCount - (curPageNum * perPageListCount) > 6) { 
+        nextPageButton.innerHTML += pageButtonHTML(curPageNum + 1, "next"); 
+    }
+}
+
+const pageButtonHTML = (setPageNum, type) => {
+    const button = 
+    `<a href="javascript:pageListChange(${setPageNum})">${type}</a>`;
+
+    return button;
+}
 
 // Function Running
 getSelectCategoryName();
+getSelectCategoryList();
 categorySidebsarNavMaker();
-categoryListCardMaker();
+pageListChange(curPageNum);
 pageNumMaker();
