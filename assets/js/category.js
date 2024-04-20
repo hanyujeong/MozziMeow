@@ -9,9 +9,10 @@ const getSelectCategoryName = () => {
 
 const categorySidebarNav = document.getElementById("sidebar-nav");
 const categorySidebsarNavMaker = () => {
+    const categorys = Object.keys(categoryListDictionary);
 
-    for(let i = 0; i < category.length; i++) {
-        const categoryName = category[i];
+    for(let i = 0; i < categorys.length; i++) {
+        const categoryName = categorys[i];
         const categoryViewPath = parseHTML(`${categoryName}`);
         
         const sidebarNav = sidebarNavHTML(categoryViewPath, categoryName, i);
