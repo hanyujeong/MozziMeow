@@ -4,15 +4,16 @@ const categoryCardList = document.getElementById("category-card-list");
 const categoryCardMaker = () => {
 
     for(let i = 0; i < category.length; i++) {
-        const categoryImgPath = parsePNG(`${imageFolderPath}${category[i]}`);
-        const categoryViewPath = parseHTML(`${categoryFolderPath}${category[i]}`);
+        const categoryName = category[i];
+        const categoryImgPath = parsePNG(`${imageFolderPath}category/${categoryName}`);
+        const categoryViewPath = parseHTML(`${categoryFolderPath}${categoryName}`);
         
-        const card = categoryCardHTML(categoryImgPath, categoryViewPath);
+        const card = categoryCardHTML(categoryName, categoryImgPath, categoryViewPath);
         categoryCardList.innerHTML += card;
     }
 }
 
-const categoryCardHTML = (imgPath, viewPath) => {
+const categoryCardHTML = (categoryName, imgPath, viewPath) => {
     const card =
     `<div class="col">
         <div class="card shadow-sm">
@@ -30,7 +31,7 @@ const categoryCardHTML = (imgPath, viewPath) => {
             </div>
         </div>
         </div>
-    </div>`
+    </div>`;
 
     return card;
 }
