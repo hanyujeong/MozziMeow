@@ -86,6 +86,20 @@ const categoryCardHTML = (imgPath, viewPath) => {
     return card;
 }
 
+const getSessionStorageCurPageNum = () => {
+    if (!window.performance) { return; }
+
+    const navigationType =  window.performance.getEntriesByType('navigation')[0].type;
+    if((navigationType!=='back_forward' && navigationType!=='reload')) { return; }
+    
+    if (('sessionStorage' in window) && window['sessionStorage'] !== null) {
+        const getCurPageNum = sessionStorage.getItem('curPageNum');
+        if (getCurPageNum) {
+            curPageNum = getCurPageNum;
+        }
+    }
+}
+
 const pageNumDiv = document.getElementById("page-num");
 const pageNumMaker = () => {
     const categorysQuatient = parseInt(selectCategoryListCount / perPageListCount);
@@ -102,6 +116,9 @@ const pageNumMaker = () => {
 
 const pageListChange = (selectPageNum) => {
     curPageNum = selectPageNum;
+    if (('sessionStorage' in window) && window['sessionStorage'] !== null) {
+        sessionStorage.setItem("curPageNum", curPageNum);
+    }
 
     categoryListCardMaker();
     preNextPageButton();
@@ -132,5 +149,6 @@ const pageButtonHTML = (setPageNum, type) => {
 getSelectCategoryName();
 getSelectCategoryList();
 categorySidebsarNavMaker();
+getSessionStorageCurPageNum();
 pageListChange(curPageNum);
 pageNumMaker();
