@@ -60,7 +60,7 @@ const categoryListCardMaker = () => {
         categoryCardList.innerHTML += card;
     }
 
-    window.scrollTo({top:0, behavior: "smooth"});
+    windowScrollReset();
 }
 
 const categoryCardHTML = (imgPath, viewPath) => {
@@ -84,6 +84,18 @@ const categoryCardHTML = (imgPath, viewPath) => {
     </div>`;
 
     return card;
+}
+
+let isBackForward = false;
+const windowScrollReset = () => {
+    if (!isBackForward && window.performance) {
+        const navigationType = window.performance.getEntriesByType('navigation')[0].type;
+        if(navigationType==='back_forward') {
+            isBackForward = true;
+            return; 
+        }
+    }
+    window.scrollTo({top:0, behavior: "smooth"});
 }
 
 const getSessionStorageCurPageNum = () => {
