@@ -31,11 +31,13 @@ const sidebarNavHTML = (viewPath, categoryName, count) => {
     return sidebarNav;
 }
 
+let pageNum = 0;
+const pageCategoryCount = 6;
 const categoryCardList = document.getElementById("category-card-list");
 const categoryListCardMaker = () => {
 
     const categoryList = categoryListDictionary[selectCategoryName];
-    for(let i = 0; i < categoryList.length; i++) {
+    for(let i = 0; i < pageNum + pageCategoryCount; i++) {
         const categoryImgPath = parsePNG(`../../${imageFolderPath}list/${categoryList[i]}`);
         const categoryViewPath = parseHTML(`../../${listFolderPath}${categoryList[i]}`);
         

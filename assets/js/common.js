@@ -8,19 +8,15 @@ const category = [
 ];
 
 const listFolderPath = viewFolderPath + 'list/';
-const category1List = [
-    'list1', 'list2', 'list1', 'list2', 'list1',
-    'list1', 'list2', 'list1', 'list2', 'list1',
-];
-
-const category2List = [
-    'list1', 'list2', 'list1', 'list2', 'list1',
-    'list1', 'list2', 'list1', 'list2', 'list1',
-];
-
 const categoryListDictionary = {
-    'category1' : category1List,
-    'category2' : category2List,
+    'category1' : [
+        'list1', 'list2', 'list1', 'list2', 'list1',
+        'list1', 'list2', 'list1', 'list2', 'list1',
+    ],
+    'category2' : [
+        'list1', 'list2', 'list1', 'list2', 'list1',
+        'list1', 'list2', 'list1', 'list2', 'list1',
+    ],
 }
 
 const parseHTML = (path) => {
