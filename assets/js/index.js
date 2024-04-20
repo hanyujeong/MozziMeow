@@ -2,8 +2,9 @@
 
 const categoryCardList = document.getElementById("category-card-list");
 const categoryCardMaker = () => {
+    const categorys = Object.keys(categoryListDictionary);
 
-    for(let i = 0; i < category.length; i++) {
+    for(let i = 0; i < categorys.length; i++) {
         const categoryName = category[i];
         const categoryImgPath = parsePNG(`${imageFolderPath}category/${categoryName}`);
         const categoryViewPath = parseHTML(`${categoryFolderPath}${categoryName}`);
