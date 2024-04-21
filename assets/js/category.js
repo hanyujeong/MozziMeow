@@ -23,7 +23,7 @@ const categorySidebarNav = document.getElementById("sidebar-nav");
 const categorySidebsarNavMaker = () => {
     for(let i = 0; i < categorys.length; i++) {
         const categoryName = categorys[i];
-        const categoryViewPath = parseHTML(`${categoryName}`);
+        const categoryViewPath = parseHTML(`../${categoryName}/${categoryName}`);
         
         const sidebarNav = sidebarNavHTML(categoryViewPath, categoryName, i);
         categorySidebarNav.innerHTML += sidebarNav;
@@ -54,7 +54,7 @@ const categoryListCardMaker = () => {
     lastListNum -= (lackPageListCount > 0 ? lackPageListCount : 0);
     for(let i = startListNum; i < lastListNum; i++) {
         const categoryImgPath = parsePNG(`../../${imageFolderPath}list/${selectCategoryList[i]}`);
-        const categoryViewPath = parseHTML(`../../${listFolderPath}${selectCategoryList[i]}`);
+        const categoryViewPath = parseHTML(`../../${viewFolderPath}${selectCategoryName}/${selectCategoryList[i]}`);
         
         const card = categoryCardHTML(categoryImgPath, categoryViewPath);
         categoryCardList.innerHTML += card;

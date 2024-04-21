@@ -7,7 +7,7 @@ const categoryCardMaker = () => {
     for(let i = 0; i < categorys.length; i++) {
         const categoryName = categorys[i];
         const categoryImgPath = parsePNG(`${imageFolderPath}category/${categoryName}`);
-        const categoryViewPath = parseHTML(`${categoryFolderPath}${categoryName}`);
+        const categoryViewPath = parseHTML(`${viewFolderPath}${categoryName}/${categoryName}`);
         
         const card = categoryCardHTML(categoryName, categoryImgPath, categoryViewPath);
         categoryCardList.innerHTML += card;
