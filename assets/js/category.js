@@ -1,6 +1,6 @@
 const categorys = Object.keys(categoryListDictionary);
 
-let curPageNum = 0;
+let curPageNum = getSessionStorageCurPageNum();
 const perPageListCount = 6;
 
 let selectCategoryName = "";
@@ -53,9 +53,8 @@ const categoryListCardMaker = () => {
     lastListNum -= (lackPageListCount > 0 ? lackPageListCount : 0);
     for(let i = startListNum; i < lastListNum; i++) {
         const categoryImgPath = parsePNG(`../../${imageFolderPath}list/${selectCategoryList[i]}`);
-        const categoryViewPath = parseHTML(`../../${viewFolderPath}${selectCategoryName}/${selectCategoryList[i]}`);
         
-        const card = categoryCardHTML(categoryImgPath, categoryViewPath);
+        const card = categoryCardHTML(categoryImgPath, i);
         categoryCardList.innerHTML += card;
     }
 
@@ -72,7 +71,7 @@ const categoryCardHTML = (imgPath, viewPath) => {
             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='${viewPath}'">View</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="javascript:gotoList(${viewPath})">View</button>
                 <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                 
             </div>
@@ -83,6 +82,13 @@ const categoryCardHTML = (imgPath, viewPath) => {
     </div>`;
 
     return card;
+}
+
+const gotoList = (selectListNum) => {
+    setSessionStorageCurListNum(selectListNum);
+
+    const categoryViewPath = parseHTML(`../../${viewFolderPath}${selectCategoryName}/${selectCategoryList[selectListNum]}`);
+    window.location.href=categoryViewPath;
 }
 
 let isBackForward = false;
@@ -97,19 +103,7 @@ const windowScrollReset = () => {
     window.scrollTo({top:0, behavior: "smooth"});
 }
 
-const getSessionStorageCurPageNum = () => {
-    if (!window.performance) { return; }
 
-    const navigationType =  window.performance.getEntriesByType('navigation')[0].type;
-    if((navigationType!=='back_forward' && navigationType!=='reload')) { return; }
-    
-    if (('sessionStorage' in window) && window['sessionStorage'] !== null) {
-        const getCurPageNum = sessionStorage.getItem('curPageNum');
-        if (getCurPageNum) {
-            curPageNum = getCurPageNum;
-        }
-    }
-}
 
 const pageNumDiv = document.getElementById("page-num");
 const pageNumMaker = () => {
@@ -127,9 +121,7 @@ const pageNumMaker = () => {
 
 const pageListChange = (selectPageNum) => {
     curPageNum = selectPageNum;
-    if (('sessionStorage' in window) && window['sessionStorage'] !== null) {
-        sessionStorage.setItem("curPageNum", curPageNum);
-    }
+    setSessionStorageCurPageNum(curPageNum);
 
     categoryListCardMaker();
     preNextPageButton();
@@ -142,10 +134,10 @@ const preNextPageButton = () => {
     nextPageButton.innerHTML = "";
 
     if(curPageNum != 0) {
-        prePageButton.innerHTML += pageButtonHTML(curPageNum - 1, "pre"); 
+        prePageButton.innerHTML += pageButtonHTML(curPageNum - 1, "pre");
     }
     if(selectCategoryListCount - (curPageNum * perPageListCount) > 6) { 
-        nextPageButton.innerHTML += pageButtonHTML(curPageNum + 1, "next"); 
+        nextPageButton.innerHTML += pageButtonHTML(curPageNum + 1, "next");
     }
 }
 
@@ -160,6 +152,5 @@ const pageButtonHTML = (setPageNum, type) => {
 getSelectCategoryName();
 getSelectCategoryList();
 categorySidebsarNavMaker();
-getSessionStorageCurPageNum();
 pageListChange(curPageNum);
 pageNumMaker();
