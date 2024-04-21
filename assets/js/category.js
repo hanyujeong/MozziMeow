@@ -7,8 +7,7 @@ let selectCategoryName = "";
 const getSelectCategoryName = () => {
     const pathname = window.location.pathname;
     const pathnameSplit = pathname.split('/');
-    const categotyFile = pathnameSplit[pathnameSplit.length - 1];
-    const categoryName = categotyFile.split('.')[0];
+    const categoryName = pathnameSplit[pathnameSplit.length - 2];
     selectCategoryName = categoryName;
 }
 

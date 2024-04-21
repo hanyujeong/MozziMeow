@@ -3,6 +3,23 @@ const lists = Object.values(categoryListDictionary);
 
 let curListNum = 0;
 
+let selectCategoryName = "";
+let selectListName = "";
+const getSelectCategoryName = () => {
+    const pathname = window.location.pathname;
+    const pathnameSplit = pathname.split('/');
+    const categotyName = pathnameSplit[pathnameSplit.length - 2];
+    selectCategoryName = categotyName;
+}
+
+const getSelectListName = () => {
+    const pathname = window.location.pathname;
+    const pathnameSplit = pathname.split('/');
+    const listFile = pathnameSplit[pathnameSplit.length - 1];
+    const listName = listFile.split('.')[0];
+    selectListName = listName;
+}
+
 let isBackForward = false;
 const windowScrollReset = () => {
     if (!isBackForward && window.performance) {
