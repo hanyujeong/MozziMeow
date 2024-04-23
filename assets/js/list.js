@@ -65,8 +65,8 @@ const windowScrollReset = () => {
 const listChange = (selectListNum) => {
     setSessionStorageCurListNum(selectListNum);
     
-    //const listViewPath = parseHTML(`../../${viewFolderPath}${selectCategoryName}/${selectLists[selectListNum]}`);
-    window.location.reload();
+    const listViewPath = parseHTML(`../../${viewFolderPath}${selectCategoryName}/${selectLists[selectListNum]}`);
+    window.location.replace(listViewPath);
 }
 
 const prePageButton = document.getElementById("pre-page-button");
