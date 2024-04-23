@@ -613,11 +613,11 @@ h6 {
   background-color: #fff;
 }
 
-@media (max-width: 1199px) {
+/* @media (max-width: 1199px) {
   .sidebar {
     left: -300px;
   }
-}
+} */
 
 .sidebar::-webkit-scrollbar {
   width: 5px;
@@ -637,7 +637,7 @@ h6 {
   }
 }
 
-@media (max-width: 1199px) {
+/* @media (max-width: 1199px) {
   .toggle-sidebar .sidebar {
     left: 0;
   }
@@ -653,7 +653,23 @@ h6 {
   .toggle-sidebar .sidebar {
     left: -300px;
   }
+} */
+
+/* Custom SideBar Start*/
+@media (min-width: 993px) {
+    .custom-toggle-sidebar-btn {
+        display: none;
+    }
 }
+
+@media (max-width: 992px) {
+    .sidebar {
+        position: fixed;
+        top: 56px;
+        display: none;
+    }
+}
+/* Custom SideBar End*/
 
 .sidebar-nav {
   padding: 0;

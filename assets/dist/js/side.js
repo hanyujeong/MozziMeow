@@ -48,6 +48,15 @@
   }
 
   /**
+   * Custom Sidebar toggle
+   */
+  if (select('.custom-toggle-sidebar-btn')) {
+    on('click', '.custom-toggle-sidebar-btn', function(e) {
+      select('.sidebar').classList.toggle('d-block')
+    })
+  }
+
+  /**
    * Search bar toggle
    */
   if (select('.search-bar-toggle')) {
