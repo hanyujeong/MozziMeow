@@ -41,7 +41,7 @@ const categorySidebsarNavMaker = () => {
 const sidebarNavHTML = (viewPath, categoryName, count) => {
     const sidebarNav =
     `<li class="nav-item">
-        <a class="nav-link ${count == 0 ? "" : "collapsed"}" href="${viewPath}">
+        <a class="nav-link ${categoryName == selectCategoryName ? "" : "collapsed"}" href="${viewPath}">
             <i class="bi bi-grid"></i>
             <span>${categoryName}</span>
         </a>
