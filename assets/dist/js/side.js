@@ -56,6 +56,12 @@
     })
   }
 
+  const customSidebar = select('.sidebar')
+  const customSidebarHide = () => {
+    customSidebar.classList.remove('d-block')
+  }
+  onscroll(document, customSidebarHide)
+
   /**
    * Search bar toggle
    */
