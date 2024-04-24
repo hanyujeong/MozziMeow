@@ -98,7 +98,6 @@ const pagenationRandomHTML = () => {
     let randomListNum = curListNum;
     while(randomListNum == curListNum) {
         randomListNum = getRandomInt(selectListsCount);
-        console.log(randomListNum);
     }
 
     const html = 
