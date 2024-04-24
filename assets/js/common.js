@@ -73,3 +73,16 @@ const removeSessionStorgeCurListNum = () => {
         sessionStorage.removeItem('curListNum');
     }
 }
+
+const navBar = document.getElementsByClassName('navbar')
+const mainContent = document.getElementById('main-content');
+const footer = document.getElementById('footer');
+const mainContentHeight = () => {
+  if(mainContent === null || footer === null) return;
+
+  const footerHeight = footer.clientHeight
+  const navBarHeight = navBar[0] !== null ? navBar[0].clientHeight : 0;
+
+  mainContent.style.minHeight = window.innerHeight - footerHeight - navBarHeight + 'px';
+}
+mainContentHeight();
