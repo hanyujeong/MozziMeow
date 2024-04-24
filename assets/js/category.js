@@ -123,7 +123,6 @@ const pageListChange = (selectPageNum) => {
 }
 
 const pagination = document.getElementById("pagination");
-const pageNumDiv = document.getElementById("page-num");
 const pageNumMaker = () => {
     pagination.innerHTML = "";
 

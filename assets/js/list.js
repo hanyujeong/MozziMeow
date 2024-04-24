@@ -69,30 +69,53 @@ const listChange = (selectListNum) => {
     window.location.replace(listViewPath);
 }
 
-const prePageButton = document.getElementById("pre-page-button");
-const nextPageButton = document.getElementById("next-page-button");
-const preNextPageButton = () => {
-    prePageButton.innerHTML = "";
-    nextPageButton.innerHTML = "";
+const pagenation = document.getElementById("pagination");
+const pagenationButton = () => {
+    pagenation.innerHTML = "";
 
-    if(curListNum != 0) {
-        prePageButton.innerHTML += pageButtonHTML(curListNum - 1, "pre");
-    }
-    if(curListNum != (selectListsCount - 1)) { 
-        prePageButton.innerHTML += pageButtonHTML(curListNum + 1, "next");
-    }
+    pagenation.insertAdjacentHTML("afterbegin", pagenationButtonHTML(
+        curListNum != 0 ? curListNum - 1 : -1,
+        `&laquo;`));
+
+    pagenation.insertAdjacentHTML("beforeend", pagenationRandomHTML());
+    
+    pagenation.insertAdjacentHTML("beforeend", pagenationButtonHTML(
+        curListNum != (selectListsCount - 1) ? curListNum + 1 : -1,
+        `&raquo;`));
 }
 
-const pageButtonHTML = (setListNum, type) => {
-    const button = 
-    `<a href="javascript:listChange(${setListNum})">${type}</a>`;
+const pagenationButtonHTML = (setListNum, type) => {
+    const html = 
+    `<li class="page-item">
+        <a class="page-link ${setListNum == -1 ? `disabled` : ``}" 
+        ${setListNum != -1 ? `href="javascript:listChange(${setListNum})"` : ``}>${type}</a>
+    </li>`;
 
-    return button;
+    return html;
+}
+
+const pagenationRandomHTML = () => {
+    let randomListNum = curListNum;
+    while(randomListNum == curListNum) {
+        randomListNum = getRandomInt(selectListsCount);
+        console.log(randomListNum);
+    }
+
+    const html = 
+    `<li class="page-item" aria-current="page">
+        <a class="page-link" href="javascript:listChange(${randomListNum})">random</a>
+    </li>`
+    
+    return html;
+}
+
+const getRandomInt = (max) => {
+    return parseInt(Math.random() * max);
 }
 
 getSelectCategoryName();
 getSelectListName();
 getSelectLists();
 categorySidebsarNavMaker();
-preNextPageButton();
+pagenationButton();
 windowScrollReset();
