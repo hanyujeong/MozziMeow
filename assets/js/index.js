@@ -9,30 +9,31 @@ const categoryCardMaker = () => {
         const categoryImgPath = parsePNG(`${imageFolderPath}category/${categoryName}/${categoryName}`);
         const categoryViewPath = parseHTML(`${viewFolderPath}${categoryName}/${categoryName}`);
         
-        const card = categoryCardHTML(categoryName, categoryImgPath, categoryViewPath);
+        const card = categoryCardHTML(categoryName, categoryImgPath, categoryViewPath, i);
         categoryCardList.innerHTML += card;
     }
 }
 
-const categoryCardHTML = (categoryName, imgPath, viewPath) => {
+const categoryCardHTML = (categoryName, imgPath, viewPath, num) => {
     const card =
-    `<div class="col">
-        <div class="card shadow-sm">
-        <img src="${imgPath}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Card image cap">
-
-        <div class="card-body">
-            <p class="card-text">${categoryName}</p>
-            <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='${viewPath}'">View</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                
-            </div>
-            <small class="text-muted">9 mins</small>
+    `<label for="view-${num}">
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="${imgPath}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Card image cap">
+                <div class="card-body">
+                    <span>
+                        <h3 class="card-text fw-bolder">${categoryName}</h3>
+                    </span>
+                    <div class="d-flex justify-content-end align-items-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="view-${num}" onclick="location.href='${viewPath}'">View</button>
+                        </div>
+                        <small class="text-muted"></small>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-    </div>`;
+    </label>`;
 
     return card;
 }

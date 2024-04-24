@@ -54,32 +54,31 @@ const categoryListCardMaker = () => {
     for(let i = startListNum; i < lastListNum; i++) {
         const categoryImgPath = parsePNG(`../../${imageFolderPath}category/${selectCategoryName}/${selectCategoryList[i]}`);
         
-        const card = categoryCardHTML(categoryImgPath, i);
+        const card = categoryCardHTML(categoryImgPath, i, i);
         categoryCardList.innerHTML += card;
     }
 
     windowScrollReset();
 }
 
-const categoryCardHTML = (imgPath, viewPath) => {
+const categoryCardHTML = (imgPath, viewPath, num) => {
     const card =
-    `<div class="col">
-        <div class="card shadow-sm">
-        <img src="${imgPath}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Card image cap">
-
-        <div class="card-body">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="javascript:gotoList(${viewPath})">View</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                
-            </div>
-            <small class="text-muted">9 mins</small>
+    `<label for="view-${num}">
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="${imgPath}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <div class="d-flex justify-content-end align-items-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="view-${num}" onclick="javascript:gotoList(${viewPath})">View</button>
+                        </div>
+                        <small class="text-muted"></small>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-    </div>`;
+    </label>`;
 
     return card;
 }
