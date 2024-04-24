@@ -96,8 +96,11 @@ const pagenationButtonHTML = (setListNum, type) => {
 
 const pagenationRandomHTML = () => {
     let randomListNum = curListNum;
-    while(randomListNum == curListNum) {
-        randomListNum = getRandomInt(selectListsCount);
+
+    if(selectListsCount > 1) {
+        while(randomListNum == curListNum) {
+            randomListNum = getRandomInt(selectListsCount);
+        }
     }
 
     const html = 
