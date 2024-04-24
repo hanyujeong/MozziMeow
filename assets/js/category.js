@@ -103,20 +103,15 @@ const windowScrollReset = () => {
     window.scrollTo({top:0, behavior: "smooth"});
 }
 
-
-
-const pageNumDiv = document.getElementById("page-num");
-const pageNumMaker = () => {
-    const categorysQuatient = parseInt(selectCategoryListCount / perPageListCount);
-    const categorysRemainder = selectCategoryListCount % perPageListCount;
+let categorysQuatient = 0;
+let categorysRemainder = 0;
+let categoryPageCount = 0;
+const pageListCountChecker = () => {
+    categorysQuatient = parseInt(selectCategoryListCount / perPageListCount);
+    categorysRemainder = selectCategoryListCount % perPageListCount;
 
     // Check Remain List Count and If Remain, add 1Page
-    const categoryPageCount = categorysRemainder > 0 ? categorysQuatient + 1 : categorysQuatient;
-    for(let i = 0; i < categoryPageCount; i++) {
-        const categoryListPageNum = `<a href="javascript:pageListChange(${i})">${i + 1}</a>`
-
-        pageNumDiv.innerHTML += categoryListPageNum;
-    }
+    categoryPageCount = categorysRemainder > 0 ? categorysQuatient + 1 : categorysQuatient;
 }
 
 const pageListChange = (selectPageNum) => {
@@ -124,33 +119,64 @@ const pageListChange = (selectPageNum) => {
     setSessionStorageCurPageNum(curPageNum);
 
     categoryListCardMaker();
-    preNextPageButton();
+    pageNumMaker();
 }
 
-const prePageButton = document.getElementById("pre-page-button");
-const nextPageButton = document.getElementById("next-page-button");
-const preNextPageButton = () => {
-    prePageButton.innerHTML = "";
-    nextPageButton.innerHTML = "";
+const pagination = document.getElementById("pagination");
+const pageNumDiv = document.getElementById("page-num");
+const pageNumMaker = () => {
+    pagination.innerHTML = "";
 
+    let prePagenation = "";
     if(curPageNum != 0) {
-        prePageButton.innerHTML += pageButtonHTML(curPageNum - 1, "pre");
+        prePagenation =
+        `<li class="page-item">
+            <a class="page-link" href="javascript:pageListChange(${curPageNum - 1})">&laquo;</a>
+        </li>`
+    } else {
+        prePagenation =
+        `<li class="page-item disabled">
+            <a class="page-link" href="#" aria-disabled="true">&laquo;</a>
+        </li>`
     }
-    if(selectCategoryListCount - (curPageNum * perPageListCount) > 6) { 
-        nextPageButton.innerHTML += pageButtonHTML(curPageNum + 1, "next");
+    pagination.insertAdjacentHTML("afterbegin", prePagenation);
+
+    for(let i = 0; i < categoryPageCount; i++) {
+        let categoryListPageNum = "";
+
+        if(i != curPageNum) {
+            categoryListPageNum = 
+            `<li class="page-item">
+                <a class="page-link" href="javascript:pageListChange(${i})">${i + 1}</a>
+            </li>`
+        } else {
+            categoryListPageNum = 
+            `<li class="page-item active" aria-current="page">
+                <a class="page-link">${i + 1}</a>
+            </li>`
+        }
+        pagination.insertAdjacentHTML("beforeend", categoryListPageNum);
     }
-}
 
-const pageButtonHTML = (setPageNum, type) => {
-    const button = 
-    `<a href="javascript:pageListChange(${setPageNum})">${type}</a>`;
-
-    return button;
+    let nextPagenation = "";
+    if(selectCategoryListCount - (curPageNum * perPageListCount) > 6) {
+        nextPagenation =
+        `<li class="page-item">
+            <a class="page-link" href="javascript:pageListChange(${curPageNum + 1})">&raquo;</a>
+        </li>`
+    } else {
+        nextPagenation =
+        `<li class="page-item disabled">
+            <a class="page-link" aria-disabled="true">&raquo;</a>
+        </li>`
+    }
+    pagination.insertAdjacentHTML("beforeend", nextPagenation);
 }
 
 // Function Running
 getSelectCategoryName();
 getSelectCategoryList();
 categorySidebsarNavMaker();
+pageListCountChecker();
 pageListChange(curPageNum);
 pageNumMaker();
