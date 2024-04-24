@@ -52,7 +52,7 @@ const categoryListCardMaker = () => {
     const lackPageListCount = perPageListCount - (selectCategoryListCount - startListNum);
     lastListNum -= (lackPageListCount > 0 ? lackPageListCount : 0);
     for(let i = startListNum; i < lastListNum; i++) {
-        const categoryImgPath = parsePNG(`../../${imageFolderPath}list/${selectCategoryList[i]}`);
+        const categoryImgPath = parsePNG(`../../${imageFolderPath}category/${selectCategoryName}/${selectCategoryList[i]}`);
         
         const card = categoryCardHTML(categoryImgPath, i);
         categoryCardList.innerHTML += card;

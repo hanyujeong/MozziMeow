@@ -3,15 +3,11 @@ const imageFolderPath = './assets/img/';
 
 // ====== Input Your Category and Category's list ===== //
 const categoryListDictionary = {
-    'category1' : [
-        'list1', 'list2', 'list1', 'list2', 'list1',
-        'list1', 'list2', 'list1', 'list2', 'list1',
+    'nature' : [
+        'nature1', 'nature2', 'nature3', 'nature4',
     ],
-    'category2' : [
-        'list1', 'list2', 'list1', 'list2', 'list1',
-        'list1', 'list2', 'list1', 'list2', 'list1',
-        'list1', 'list2', 'list1', 'list2', 'list1',
-        'list1', 'list2', 'list1', 'list2', 'list1',
+    'food' : [
+        'food1', 
     ],
 }
 
