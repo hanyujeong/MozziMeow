@@ -2,24 +2,6 @@ const categorys = Object.keys(categoryListDictionary);
 
 const curListNum = getSessionStorageCurListNum();
 
-let selectCategoryName = "";
-let selectListName = "";
-const getSelectCategoryName = () => {
-    const pathname = window.location.pathname;
-    const pathnameSplit = pathname.split('/');
-    const categotyName = pathnameSplit[pathnameSplit.length - 2];
-    selectCategoryName = categotyName;
-    
-}
-
-const getSelectListName = () => {
-    const pathname = window.location.pathname;
-    const pathnameSplit = pathname.split('/');
-    const listFile = pathnameSplit[pathnameSplit.length - 1];
-    const listName = listFile.split('.')[0];
-    selectListName = listName;
-}
-
 let selectLists = [];
 let selectListsCount = 0;
 const getSelectLists = () => {
@@ -117,8 +99,6 @@ const getRandomInt = (max) => {
 
 
 // Function Running
-getSelectCategoryName();
-getSelectListName();
 getSelectLists();
 categorySidebsarNavMaker();
 pagenationButton();

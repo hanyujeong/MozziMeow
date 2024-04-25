@@ -3,14 +3,6 @@ const categorys = Object.keys(categoryListDictionary);
 let curPageNum = getSessionStorageCurPageNum();
 const perPageListCount = 6;
 
-let selectCategoryName = "";
-const getSelectCategoryName = () => {
-    const pathname = window.location.pathname;
-    const pathnameSplit = pathname.split('/');
-    const categoryName = pathnameSplit[pathnameSplit.length - 2];
-    selectCategoryName = categoryName;
-}
-
 let selectCategoryList = [];
 let selectCategoryListCount = 0;
 const getSelectCategoryList = () => {
@@ -176,7 +168,6 @@ const pageNumMaker = () => {
 
 
 // Function Running
-getSelectCategoryName();
 getSelectCategoryList();
 categorySidebsarNavMaker();
 pageListCountChecker();

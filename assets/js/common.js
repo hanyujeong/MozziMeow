@@ -93,12 +93,46 @@ const capitalizeFirstLetter = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
+
+const mainContentHeight = () => {
+    const nav = document.getElementsByTagName('nav');
+    const mainContent = document.getElementById('main-content');
+    const footer = document.getElementsByTagName('footer');
+
+    if(mainContent === null || footer === null) return;
+
+    const footerHeight = footer[0].clientHeight
+    const navBarHeight = nav !== null ? nav[0].clientHeight : 0;
+
+    mainContent.style.minHeight = window.innerHeight - footerHeight - navBarHeight + 'px';
+}
+mainContentHeight();
+
+const getSelectCategoryName = () => {
+    const pathname = window.location.pathname;
+    const pathnameSplit = pathname.split('/');
+    const categotyName = pathnameSplit[pathnameSplit.length - 2];
+    
+    return categotyName;
+}
+const selectCategoryName = getSelectCategoryName();
+
+const getSelectListName = () => {
+    const pathname = window.location.pathname;
+    const pathnameSplit = pathname.split('/');
+    const listFile = pathnameSplit[pathnameSplit.length - 1];
+    const listName = listFile.split('.')[0];
+
+    return listName;
+}
+const selectListName = getSelectListName();
+
 const setNavbarSurpportedContentlist = () => {
     const navbarSupportedContent = document.getElementById('navbarSupportedContent');
     const listTag = navbarSupportedContent.firstElementChild;
 
     const list = 
-    `<li class="nav-item"><a class="nav-link" href=${window.location.protocol}//${window.location.hostname}/index.html>Home</a></li>
+    `<li class="nav-item"><a class="nav-link" href=${selectListName !== 'index' ? '../../index.html' : './index.html'}>Home</a></li>
     <li class="nav-item"><a class="nav-link" href="https://blog.naver.com/profile/intro.naver?blogId=shootfruit">About</a></li>
     <li class="nav-item"><a class="nav-link" href="https://blog.naver.com/guestbook/GuestBookList.naver?blogId=shootfruit&skinType=&skinId=&from=menu">Contact</a></li>
     <li class="nav-item"><a class="nav-link active" aria-current="page" href="https://blog.naver.com/PostList.naver?blogId=shootfruit&from=postList&categoryNo=25">Blog</a></li>`;
@@ -106,16 +140,3 @@ const setNavbarSurpportedContentlist = () => {
     listTag.insertAdjacentHTML("afterbegin", list);
 }
 setNavbarSurpportedContentlist();
-
-const nav = document.getElementsByTagName('nav');
-const mainContent = document.getElementById('main-content');
-const footer = document.getElementsByTagName('footer');
-const mainContentHeight = () => {
-  if(mainContent === null || footer === null) return;
-
-  const footerHeight = footer[0].clientHeight
-  const navBarHeight = nav !== null ? nav[0].clientHeight : 0;
-
-  mainContent.style.minHeight = window.innerHeight - footerHeight - navBarHeight + 'px';
-}
-mainContentHeight();
