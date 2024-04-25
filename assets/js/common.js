@@ -81,6 +81,7 @@ const getSessionStorageCurListNum = () => {
             for(let i = 0; i < selectCategoryListsCount; i++) {
                 if(selectCategoryLists[i] === selectListName) {
                     const getListNum = i;
+                    setSessionStorageCurListNum(getListNum);
                     return getListNum;
                 }
             }
