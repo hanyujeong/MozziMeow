@@ -68,7 +68,9 @@ const categoryCardHTML = (imgPath, viewPath, num) => {
             <div class="card shadow-sm">
                 <img src="${imgPath}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Card image cap">
                 <div class="card-body">
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <div class="mt-2 mb-2">
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
                     <div class="d-flex justify-content-end align-items-center">
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-outline-secondary" id="view-${num}" onclick="javascript:gotoList(${viewPath})">View</button>
