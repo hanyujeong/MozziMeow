@@ -16,9 +16,9 @@ const categoryCardMaker = () => {
 
 const categoryCardHTML = (categoryName, imgPath, viewPath, num) => {
     const card =
-    `<label for="view-${num}">
-        <div class="col custom-cursor">
-            <div class="card shadow-sm">
+    `<div class="col">
+        <div class="card shadow-sm">
+            <label class="custom-cursor" for="view-${num}">
                 <img src="${imgPath}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Card image cap">
                 <div class="card-body">
                     <span>
@@ -31,9 +31,9 @@ const categoryCardHTML = (categoryName, imgPath, viewPath, num) => {
                         <small class="text-muted"></small>
                     </div>
                 </div>
-            </div>
+            </label>
         </div>
-    </label>`;
+    </div>`;
 
     return card;
 }
