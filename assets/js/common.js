@@ -93,14 +93,14 @@ const capitalizeFirstLetter = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
-const navBar = document.getElementsByClassName('navbar')
+const nav = document.getElementsByTagName('nav');
 const mainContent = document.getElementById('main-content');
-const footer = document.getElementById('footer');
+const footer = document.getElementsByTagName('footer');
 const mainContentHeight = () => {
   if(mainContent === null || footer === null) return;
 
-  const footerHeight = footer.clientHeight
-  const navBarHeight = navBar[0] !== null ? navBar[0].clientHeight : 0;
+  const footerHeight = footer[0].clientHeight
+  const navBarHeight = nav !== null ? nav[0].clientHeight : 0;
 
   mainContent.style.minHeight = window.innerHeight - footerHeight - navBarHeight + 'px';
 }

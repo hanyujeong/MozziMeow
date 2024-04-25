@@ -174,6 +174,7 @@ const pageNumMaker = () => {
     pagination.insertAdjacentHTML("beforeend", nextPagenation);
 }
 
+
 // Function Running
 getSelectCategoryName();
 getSelectCategoryList();

@@ -115,6 +115,8 @@ const getRandomInt = (max) => {
     return parseInt(Math.random() * max);
 }
 
+
+// Function Running
 getSelectCategoryName();
 getSelectListName();
 getSelectLists();
