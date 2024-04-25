@@ -93,6 +93,20 @@ const capitalizeFirstLetter = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
+const setNavbarSurpportedContentlist = () => {
+    const navbarSupportedContent = document.getElementById('navbarSupportedContent');
+    const listTag = navbarSupportedContent.firstElementChild;
+
+    const list = 
+    `<li class="nav-item"><a class="nav-link" href=${window.location.protocol}//${window.location.hostname}/index.html>Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="https://blog.naver.com/profile/intro.naver?blogId=shootfruit">About</a></li>
+    <li class="nav-item"><a class="nav-link" href="https://blog.naver.com/guestbook/GuestBookList.naver?blogId=shootfruit&skinType=&skinId=&from=menu">Contact</a></li>
+    <li class="nav-item"><a class="nav-link active" aria-current="page" href="https://blog.naver.com/PostList.naver?blogId=shootfruit&from=postList&categoryNo=25">Blog</a></li>`;
+
+    listTag.insertAdjacentHTML("afterbegin", list);
+}
+setNavbarSurpportedContentlist();
+
 const nav = document.getElementsByTagName('nav');
 const mainContent = document.getElementById('main-content');
 const footer = document.getElementsByTagName('footer');
