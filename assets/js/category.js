@@ -129,7 +129,7 @@ const pageNumMaker = () => {
     } else {
         prePagenation =
         `<li class="page-item disabled">
-            <a class="page-link" href="#" aria-disabled="true">&laquo;</a>
+            <a class="page-link" aria-disabled="true">&laquo;</a>
         </li>`
     }
     pagination.insertAdjacentHTML("afterbegin", prePagenation);
