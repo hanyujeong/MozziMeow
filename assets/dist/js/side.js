@@ -58,6 +58,7 @@
 
   const customSidebar = select('.sidebar')
   const customSidebarHide = () => {
+    if(!customSidebar) return;
     customSidebar.classList.remove('d-block')
   }
   onscroll(document, customSidebarHide)
