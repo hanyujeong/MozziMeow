@@ -10,7 +10,7 @@ const categoryCardMaker = () => {
         const categoryViewPath = parseHTML(`${viewFolderPath}${categoryName}/${categoryName}`);
         
         const card = categoryCardHTML(categoryName, categoryImgPath, categoryViewPath, i);
-        categoryCardList.innerHTML += card;
+        categoryCardList.insertAdjacentHTML("beforeend", card);
     }
 }
 

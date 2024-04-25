@@ -16,7 +16,7 @@ const categorySidebsarNavMaker = () => {
         const categoryViewPath = parseHTML(`../${categoryName}/${categoryName}`);
         
         const sidebarNav = sidebarNavHTML(categoryViewPath, categoryName, i);
-        categorySidebarNav.innerHTML += sidebarNav;
+        categorySidebarNav.insertAdjacentHTML("beforeend", sidebarNav);
     }
 }
 

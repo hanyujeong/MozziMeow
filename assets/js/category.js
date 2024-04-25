@@ -17,7 +17,7 @@ const categorySidebsarNavMaker = () => {
         const categoryViewPath = parseHTML(`../${categoryName}/${categoryName}`);
         
         const sidebarNav = sidebarNavHTML(categoryViewPath, categoryName, i);
-        categorySidebarNav.innerHTML += sidebarNav;
+        categorySidebarNav.insertAdjacentHTML("beforeend", sidebarNav);
     }
 }
 
@@ -48,7 +48,7 @@ const categoryListCardMaker = () => {
         const categoryImgPath = parsePNG(`../../${imageFolderPath}category/${selectCategoryName}/${selectListName}`);
         
         const card = categoryCardHTML(categoryImgPath, i, selectListName);
-        categoryCardList.innerHTML += card;
+        categoryCardList.insertAdjacentHTML("beforeend", card);
     }
 
     windowScrollReset();
