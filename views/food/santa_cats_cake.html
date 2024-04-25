@@ -28,7 +28,12 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="../../index.html">Starflower Illustration</a>
-                <i class="bi bi-list custom-toggle-sidebar-btn navbar-brand"></i>
+                <div class="d-flex justify-content-between">
+                    <a class="custom-toggle-sidebar-btn" href="javascript:void(0)">
+                        <span class="navbar-toggler-icon"></span>
+                        <!-- <i class="bi bi-list navbar-brand"></i> -->
+                    </a>
+                </div>
                 <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button> -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -39,19 +44,28 @@
         <!-- Page content-->
         <div class="container mt-5" id="main-content">
             <div class="row">
+                <div class="col-lg-3">
+                </div>
+                <!-- Post header-->
+                <header class="col-lg-9 mb-4">
+                    <!-- Post title-->
+                    <h1 class="fw-bolder mb-1">Welcome to Post Food!</h1>
+                    <!-- Post meta content-->
+                    <div class="text-muted fst-italic mb-2">Posted on April 24, 2024 by Starflower</div>
+                    <!-- Post categories-->
+                    <a class="badge bg-secondary text-decoration-none link-light">Illustration</a>
+                    <a class="badge bg-secondary text-decoration-none link-light">Freebies</a>
+                </header>
+                <!-- Side widgets-->
+                <div class="col-lg-3">
+                    <aside id="sidebar" class="sidebar mb-4">
+                        <ul class="sidebar-nav" id="sidebar-nav">
+                        </ul>
+                    </aside><!-- End Sidebar-->
+                </div>
                 <div class="col-lg-9">
                     <!-- Post content-->
                     <article>
-                        <!-- Post header-->
-                        <header class="mb-4">
-                            <!-- Post title-->
-                            <h1 class="fw-bolder mb-1">Welcome to Post Food!</h1>
-                            <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">Posted on April 24, 2024 by Starflower</div>
-                            <!-- Post categories-->
-                            <a class="badge bg-secondary text-decoration-none link-light">Illustration</a>
-                            <a class="badge bg-secondary text-decoration-none link-light">Freebies</a>
-                        </header>
                         <!-- Preview image figure-->
                         <figure class="mb-4"><img class="img-fluid rounded" src="../../assets/img/category/food/santa_cats_cake.png" alt="..." /></figure>
                         <!-- Post content-->
@@ -64,32 +78,25 @@
                             <p class="fs-5 mb-4">Venus has a runaway greenhouse effect. I kind of want to know what happened there because we're twirling knobs here on Earth without knowing the consequences of it. Mars once had running water. It's bone dry today. Something bad happened there as well.</p>
                         </section>
                     </article>
-                </div>
-                <!-- Side widgets-->
-                <div class="col-lg-3">
-                    <aside id="sidebar" class="sidebar mb-4">
-                        <ul class="sidebar-nav" id="sidebar-nav">
-                        </ul>
-                    </aside><!-- End Sidebar-->
+                    <!-- Start Pagenation -->
+                    <div class="pagination-body d-flex justify-content-center mb-5">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination" id="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#">&laquo;</a>
+                                </li>
+                                <li class="page-item" aria-current="page">
+                                    <a class="page-link">random</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">&raquo;</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- End Pagenation -->
                 </div>
             </div>
-            <!-- Start Pagenation -->
-            <div class="col-lg-9 pagination-body d-flex justify-content-center mb-5">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination" id="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#">&laquo;</a>
-                        </li>
-                        <li class="page-item" aria-current="page">
-                            <a class="page-link">random</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">&raquo;</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <!-- End Pagenation -->
         </div>
 
         <!-- back to top -->
