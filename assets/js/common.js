@@ -20,6 +20,33 @@ const parsePNG = (path) => {
     return path + ".png";
 }
 
+const getSelectCategoryName = () => {
+    const pathname = window.location.pathname;
+    const pathnameSplit = pathname.split('/');
+    const categotyName = pathnameSplit[pathnameSplit.length - 2];
+    
+    return categotyName;
+}
+const selectCategoryName = getSelectCategoryName();
+
+const getSelectListName = () => {
+    const pathname = window.location.pathname;
+    const pathnameSplit = pathname.split('/');
+    const listFile = pathnameSplit[pathnameSplit.length - 1];
+    const listName = listFile.split('.')[0];
+
+    return listName;
+}
+const selectListName = getSelectListName();
+
+const getSelectCategoryLists = () => {
+    const selectCategoryLists = categoryListDictionary[selectCategoryName];
+    
+    return selectCategoryLists;
+}
+const selectCategoryLists = getSelectCategoryLists();
+const selectCategoryListsCount = selectCategoryLists?.length;
+
 const getSessionStorageCurPageNum = () => {
     if (!window.performance) { return 0; }
 
@@ -45,11 +72,22 @@ const setSessionStorageCurPageNum = (selectListNum) => {
 const getSessionStorageCurListNum = () => {
     if (!window.performance) { return 0; }
 
-    const navigationType =  window.performance.getEntriesByType('navigation')[0].type;
+    //const navigationType =  window.performance.getEntriesByType('navigation')[0].type;
     //if((navigationType !== 'back_forward' && navigationType !== 'reload')) { return 0; }
     
     if (('sessionStorage' in window) && window['sessionStorage'] !== null) {
-        const getListNum = Number(sessionStorage.getItem('curListNum'));
+        const curListNum = sessionStorage.getItem('curListNum');
+        if(!curListNum) {
+            for(let i = 0; i < selectListsCount; i++) {
+                if(selectLists[i] === selectListName) {
+                    const getListNum = i;
+                    return getListNum;
+                }
+            }
+            return 0;
+        }
+
+        const getListNum = Number(curListNum);
         if (getListNum >= 0) {
             return getListNum;
         }
@@ -73,6 +111,18 @@ const removeSessionStorgeCurListNum = () => {
     if (('sessionStorage' in window) && window['sessionStorage'] !== null) {
         sessionStorage.removeItem('curListNum');
     }
+}
+
+let isBackForward = false;
+const windowScrollReset = () => {
+    if (!isBackForward && window.performance) {
+        const navigationType = window.performance.getEntriesByType('navigation')[0].type;
+        if(navigationType==='back_forward') {
+            isBackForward = true;
+            return; 
+        }
+    }
+    window.scrollTo({top:0, behavior: "smooth"});
 }
 
 const regExpUnderBarToSpace = /[_]+/gi;
@@ -107,25 +157,6 @@ const mainContentHeight = () => {
     mainContent.style.minHeight = window.innerHeight - footerHeight - navBarHeight + 'px';
 }
 mainContentHeight();
-
-const getSelectCategoryName = () => {
-    const pathname = window.location.pathname;
-    const pathnameSplit = pathname.split('/');
-    const categotyName = pathnameSplit[pathnameSplit.length - 2];
-    
-    return categotyName;
-}
-const selectCategoryName = getSelectCategoryName();
-
-const getSelectListName = () => {
-    const pathname = window.location.pathname;
-    const pathnameSplit = pathname.split('/');
-    const listFile = pathnameSplit[pathnameSplit.length - 1];
-    const listName = listFile.split('.')[0];
-
-    return listName;
-}
-const selectListName = getSelectListName();
 
 const setNavbarSurpportedContentlist = () => {
     const navbarSupportedContent = document.getElementById('navbarSupportedContent');

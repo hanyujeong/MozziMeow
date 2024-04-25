@@ -2,13 +2,6 @@ const categorys = Object.keys(categoryListDictionary);
 
 const curListNum = getSessionStorageCurListNum();
 
-let selectLists = [];
-let selectListsCount = 0;
-const getSelectLists = () => {
-    selectLists = categoryListDictionary[selectCategoryName];
-    selectListsCount = selectLists.length;
-}
-
 const categorySidebarNav = document.getElementById("sidebar-nav");
 const categorySidebsarNavMaker = () => {
     for(let i = 0; i < categorys.length; i++) {
@@ -32,22 +25,10 @@ const sidebarNavHTML = (viewPath, categoryName, count) => {
     return sidebarNav;
 }
 
-let isBackForward = false;
-const windowScrollReset = () => {
-    if (!isBackForward && window.performance) {
-        const navigationType = window.performance.getEntriesByType('navigation')[0].type;
-        if(navigationType==='back_forward') {
-            isBackForward = true;
-            return; 
-        }
-    }
-    window.scrollTo({top:0, behavior: "smooth"});
-}
-
 const listChange = (selectListNum) => {
     setSessionStorageCurListNum(selectListNum);
     
-    const listViewPath = parseHTML(`../../${viewFolderPath}${selectCategoryName}/${selectLists[selectListNum]}`);
+    const listViewPath = parseHTML(`../../${viewFolderPath}${selectCategoryName}/${selectCategoryLists[selectListNum]}`);
     window.location.replace(listViewPath);
 }
 
@@ -62,7 +43,7 @@ const pagenationButton = () => {
     pagenation.insertAdjacentHTML("beforeend", pagenationRandomHTML());
     
     pagenation.insertAdjacentHTML("beforeend", pagenationButtonHTML(
-        curListNum != (selectListsCount - 1) ? curListNum + 1 : -1,
+        curListNum != (selectCategoryListsCount - 1) ? curListNum + 1 : -1,
         `&raquo;`));
 }
 
@@ -79,9 +60,9 @@ const pagenationButtonHTML = (setListNum, type) => {
 const pagenationRandomHTML = () => {
     let randomListNum = curListNum;
 
-    if(selectListsCount > 1) {
+    if(selectCategoryListsCount > 1) {
         while(randomListNum == curListNum) {
-            randomListNum = getRandomInt(selectListsCount);
+            randomListNum = getRandomInt(selectCategoryListsCount);
         }
     }
 
@@ -99,7 +80,6 @@ const getRandomInt = (max) => {
 
 
 // Function Running
-getSelectLists();
 categorySidebsarNavMaker();
 pagenationButton();
 windowScrollReset();

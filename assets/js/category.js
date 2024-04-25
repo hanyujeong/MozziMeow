@@ -3,13 +3,6 @@ const categorys = Object.keys(categoryListDictionary);
 let curPageNum = getSessionStorageCurPageNum();
 const perPageListCount = 6;
 
-let selectCategoryList = [];
-let selectCategoryListCount = 0;
-const getSelectCategoryList = () => {
-    selectCategoryList = categoryListDictionary[selectCategoryName];
-    selectCategoryListCount = selectCategoryList.length;
-}
-
 const categorySidebarNav = document.getElementById("sidebar-nav");
 const categorySidebsarNavMaker = () => {
     for(let i = 0; i < categorys.length; i++) {
@@ -41,10 +34,10 @@ const categoryListCardMaker = () => {
     let lastListNum = startListNum + perPageListCount;
     
     //Check lack list count of last page
-    const lackPageListCount = perPageListCount - (selectCategoryListCount - startListNum);
+    const lackPageListCount = perPageListCount - (selectCategoryListsCount - startListNum);
     lastListNum -= (lackPageListCount > 0 ? lackPageListCount : 0);
     for(let i = startListNum; i < lastListNum; i++) {
-        const selectListName = selectCategoryList[i];
+        const selectListName = selectCategoryLists[i];
         const categoryImgPath = parsePNG(`../../${imageFolderPath}category/${selectCategoryName}/${selectListName}`);
         
         const card = categoryCardHTML(categoryImgPath, i, selectListName);
@@ -81,28 +74,16 @@ const categoryCardHTML = (imgPath, viewNum, selectListName) => {
 const gotoList = (selectListNum) => {
     setSessionStorageCurListNum(selectListNum);
 
-    const categoryViewPath = parseHTML(`../../${viewFolderPath}${selectCategoryName}/${selectCategoryList[selectListNum]}`);
+    const categoryViewPath = parseHTML(`../../${viewFolderPath}${selectCategoryName}/${selectCategoryLists[selectListNum]}`);
     window.location.href=categoryViewPath;
-}
-
-let isBackForward = false;
-const windowScrollReset = () => {
-    if (!isBackForward && window.performance) {
-        const navigationType = window.performance.getEntriesByType('navigation')[0].type;
-        if(navigationType==='back_forward') {
-            isBackForward = true;
-            return; 
-        }
-    }
-    window.scrollTo({top:0, behavior: "smooth"});
 }
 
 let categorysQuatient = 0;
 let categorysRemainder = 0;
 let categoryPageCount = 0;
 const pageListCountChecker = () => {
-    categorysQuatient = parseInt(selectCategoryListCount / perPageListCount);
-    categorysRemainder = selectCategoryListCount % perPageListCount;
+    categorysQuatient = parseInt(selectCategoryListsCount / perPageListCount);
+    categorysRemainder = selectCategoryListsCount % perPageListCount;
 
     // Check Remain List Count and If Remain, add 1Page
     categoryPageCount = categorysRemainder > 0 ? categorysQuatient + 1 : categorysQuatient;
@@ -152,7 +133,7 @@ const pageNumMaker = () => {
     }
 
     let nextPagenation = "";
-    if(selectCategoryListCount - (curPageNum * perPageListCount) > 6) {
+    if(selectCategoryListsCount - (curPageNum * perPageListCount) > 6) {
         nextPagenation =
         `<li class="page-item">
             <a class="page-link" href="javascript:pageListChange(${curPageNum + 1})">&raquo;</a>
@@ -168,7 +149,6 @@ const pageNumMaker = () => {
 
 
 // Function Running
-getSelectCategoryList();
 categorySidebsarNavMaker();
 pageListCountChecker();
 pageListChange(curPageNum);
