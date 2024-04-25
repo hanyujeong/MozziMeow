@@ -4,8 +4,8 @@ const imageFolderPath = './assets/img/';
 // ====== Input Your Category and Category's list ===== //
 const categoryListDictionary = {
     'nature' : [
-        'cats_hiding_in_flowers', 'a_cat_lying_on_the_grass', 'cats_running_through_the_yellow_grass',
-        'cats_playing_music_in_the_flower_garden',
+        'dancing_dancing_cats', 'white_christmas_cat_house',
+        'cats_hiding_in_flowers', 'a_cat_lying_on_the_grass', 'cats_running_through_the_yellow_grass', 'cats_playing_music_in_the_flower_garden',
     ],
     'food' : [
         'santa_cats_cake', 
