@@ -64,7 +64,7 @@ const categoryListCardMaker = () => {
 const categoryCardHTML = (imgPath, viewPath, num) => {
     const card =
     `<label for="view-${num}">
-        <div class="col">
+        <div class="col custom-cursor">
             <div class="card shadow-sm">
                 <img src="${imgPath}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Card image cap">
                 <div class="card-body">
