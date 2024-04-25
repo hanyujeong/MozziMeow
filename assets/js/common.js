@@ -4,10 +4,11 @@ const imageFolderPath = './assets/img/';
 // ====== Input Your Category and Category's list ===== //
 const categoryListDictionary = {
     'nature' : [
-        'nature1', 'nature2', 'nature3', 'nature4',
+        'cats_hiding_in_flowers', 'a_cat_lying_on_the_grass', 'cats_running_through_the_yellow_grass',
+        'cats_playing_music_in_the_flower_garden',
     ],
     'food' : [
-        'food1', 
+        'santa_cats_cake', 
     ],
 }
 
@@ -72,6 +73,24 @@ const removeSessionStorgeCurListNum = () => {
     if (('sessionStorage' in window) && window['sessionStorage'] !== null) {
         sessionStorage.removeItem('curListNum');
     }
+}
+
+const regExpUnderBarToSpace = /[_]+/gi;
+const replaceUnderBarToSpace = (str) => {
+
+    return str.replace(regExpUnderBarToSpace, ` `);
+}
+
+const regExpCapitalizeFirstLetter = /\b\w/g;
+const capitalizeFirstLetters = (str) => {
+
+    return str.replace(regExpCapitalizeFirstLetter, (char) => char.toUpperCase());
+}
+
+const capitalizeFirstLetter = (str) => {
+    if (str.length === 0) return str;
+
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
 const navBar = document.getElementsByClassName('navbar')

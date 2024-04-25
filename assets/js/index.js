@@ -22,7 +22,7 @@ const categoryCardHTML = (categoryName, imgPath, viewPath, num) => {
                 <img src="${imgPath}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Card image cap">
                 <div class="card-body">
                     <span>
-                        <h3 class="card-text fw-bolder">${categoryName}</h3>
+                        <h3 class="card-text fw-bolder">${categoryName.toUpperCase()}</h3>
                     </span>
                     <div class="d-flex justify-content-end align-items-center">
                         <div class="btn-group">

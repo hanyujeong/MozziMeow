@@ -52,28 +52,29 @@ const categoryListCardMaker = () => {
     const lackPageListCount = perPageListCount - (selectCategoryListCount - startListNum);
     lastListNum -= (lackPageListCount > 0 ? lackPageListCount : 0);
     for(let i = startListNum; i < lastListNum; i++) {
-        const categoryImgPath = parsePNG(`../../${imageFolderPath}category/${selectCategoryName}/${selectCategoryList[i]}`);
+        const selectListName = selectCategoryList[i];
+        const categoryImgPath = parsePNG(`../../${imageFolderPath}category/${selectCategoryName}/${selectListName}`);
         
-        const card = categoryCardHTML(categoryImgPath, i, i);
+        const card = categoryCardHTML(categoryImgPath, i, selectListName);
         categoryCardList.innerHTML += card;
     }
 
     windowScrollReset();
 }
 
-const categoryCardHTML = (imgPath, viewPath, num) => {
+const categoryCardHTML = (imgPath, viewNum, selectListName) => {
     const card =
-    `<label for="view-${num}">
+    `<label for="view-${viewNum}">
         <div class="col custom-cursor">
             <div class="card shadow-sm">
                 <img src="${imgPath}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Card image cap">
                 <div class="card-body">
                     <div class="mt-2 mb-2">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <p class="card-text fw-bolder">${capitalizeFirstLetter(replaceUnderBarToSpace(selectListName))}</p>
                     </div>
                     <div class="d-flex justify-content-end align-items-center">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary" id="view-${num}" onclick="javascript:gotoList(${viewPath})">View</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="view-${viewNum}" onclick="javascript:gotoList(${viewNum})">View</button>
                         </div>
                         <small class="text-muted"></small>
                     </div>
