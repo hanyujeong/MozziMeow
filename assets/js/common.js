@@ -78,8 +78,8 @@ const getSessionStorageCurListNum = () => {
     if (('sessionStorage' in window) && window['sessionStorage'] !== null) {
         const curListNum = sessionStorage.getItem('curListNum');
         if(!curListNum) {
-            for(let i = 0; i < selectListsCount; i++) {
-                if(selectLists[i] === selectListName) {
+            for(let i = 0; i < selectCategoryListsCount; i++) {
+                if(selectCategoryLists[i] === selectListName) {
                     const getListNum = i;
                     return getListNum;
                 }
