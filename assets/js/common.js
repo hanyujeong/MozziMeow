@@ -144,6 +144,23 @@ const capitalizeFirstLetter = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
+const reInitBacktotop = () => {
+    const backtotopClassName = document.getElementsByClassName('.back-to-top')
+    if (backtotopClassName.length > 0) {
+        const backtotop = backtotopClassName[0];
+        const toggleBacktotop = () => {
+            if (window.scrollY > 100) {
+            backtotop.classList.add('active')
+            } else {
+            backtotop.classList.remove('active')
+            }
+        }
+        window.addEventListener('load', toggleBacktotop)
+        onscroll(document, toggleBacktotop)
+    }
+}
+reInitBacktotop();
+
 const setNavbarSurpportedContentlist = (listTag) => {
     //const navbarSupportedContent = document.getElementById('navbarSupportedContent');
     //const listTag = navbarSupportedContent.firstElementChild;
