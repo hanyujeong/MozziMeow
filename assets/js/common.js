@@ -190,6 +190,11 @@ if(headerLayoutId) {
     
     headerObserver.observe(headerLayoutId, headerObserverConfig);
 }
+else
+{
+    // Apply to index.html
+    setNavbarSurpportedContentlist();
+}
 
 const footerLayoutId = document.getElementById("footer-layout");
 if(footerLayoutId) {
@@ -211,7 +216,6 @@ if(footerLayoutId) {
     
     footerObserver.observe(footerLayoutId, footerObserverConfig);
 }
-
 
 window.addEventListener('resize', () => {
     mainContentHeight();
