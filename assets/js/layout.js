@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             tempDiv.innerHTML = data;
 
             Array.from(tempDiv.childNodes).forEach(node => {
-                document.head.insertAdjacentHTML('beforeend', node.outerHTML);
+                document.head.appendChild(node);
             });
         });
 
