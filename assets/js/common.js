@@ -147,12 +147,13 @@ const capitalizeFirstLetter = (str) => {
 const onscroll = (element, listener) => {
     element.addEventListener('scroll', listener)
 }
-const reInitBacktotop = (backtotop) => {
+const reInitBacktotop = () => {
+    const backtotop = document.getElementById('back-to-top-container');
     const toggleBacktotop = () => {
         if (window.scrollY > 100) {
-        backtotop.classList.add('active')
+            backtotop.classList.add('active')
         } else {
-        backtotop.classList.remove('active')
+            backtotop.classList.remove('active')
         }
     }
     window.addEventListener('load', toggleBacktotop)
