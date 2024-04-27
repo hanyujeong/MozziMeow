@@ -40,13 +40,13 @@ document.addEventListener("DOMContentLoaded", async function() {
         document.head.appendChild(node);
     });
 
-    const headerResponse = await fetch("../layout/category_header.html");
-    const headerData = await headerResponse.text();
-    const headerHtml = await executeScript(headerData);
-    document.getElementById("header-layout").insertAdjacentHTML('beforeend', headerHtml);
-
     const footerResponse = await fetch("../layout/category_footer.html");
     const footerData = await footerResponse.text();
     const footerHtml = await executeScript(footerData);
     document.getElementById("footer-layout").insertAdjacentHTML('beforeend', footerHtml);
+
+    const headerResponse = await fetch("../layout/category_header.html");
+    const headerData = await headerResponse.text();
+    const headerHtml = await executeScript(headerData);
+    document.getElementById("header-layout").insertAdjacentHTML('beforeend', headerHtml);
 });

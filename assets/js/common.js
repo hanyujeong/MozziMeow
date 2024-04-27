@@ -156,7 +156,6 @@ const setNavbarSurpportedContentlist = () => {
 
     listTag.insertAdjacentHTML("afterbegin", list);
 }
-setNavbarSurpportedContentlist();
 
 const mainContentHeight = () => {
     const nav = document.getElementsByTagName('nav');
@@ -171,49 +170,48 @@ const mainContentHeight = () => {
     mainContent.style.minHeight = window.innerHeight - footerHeight - navBarHeight + 'px';
 }
 
-window.onload = () => {
-    const headerLayoutId = document.getElementById("header-layout");
-    if(headerLayoutId) {
-        const headerCallback = (mutationsList, observer) => {
-            for(const mutation of mutationsList) {
-                if (mutation.type === 'childList') {
-                    mutation.addedNodes.forEach(node => {
-                        if (node.nodeName === 'NAV') {
-                            setNavbarSurpportedContentlist();
-                            observer.disconnect();
-                        }
-                    });
-                }
+const headerLayoutId = document.getElementById("header-layout");
+if(headerLayoutId) {
+    const headerCallback = (mutationsList, observer) => {
+        for(const mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                mutation.addedNodes.forEach(node => {
+                    if (node.nodeName === 'NAV') {
+                        setNavbarSurpportedContentlist();
+                        observer.disconnect();
+                    }
+                });
             }
-        };
-        
-        const headerObserver = new MutationObserver(headerCallback);
-        const headerObserverConfig = { attributes: false, childList: true, subtree: false };
-        
-        headerObserver.observe(headerLayoutId, headerObserverConfig);
-    }
-
-    const footerLayoutId = document.getElementById("footer-layout");
-    if(footerLayoutId) {
-        const footerCallback = (mutationsList, observer) => {
-            for(const mutation of mutationsList) {
-                if (mutation.type === 'childList') {
-                    mutation.addedNodes.forEach(node => {
-                        if (node.nodeName === 'FOOTER') {
-                            mainContentHeight();
-                            observer.disconnect();
-                        }
-                    });
-                }
-            }
-        };
-        
-        const footerObserver = new MutationObserver(footerCallback);
-        const footerObserverConfig = { attributes: false, childList: true, subtree: false };
-        
-        footerObserver.observe(footerLayoutId, footerObserverConfig);
-    }
+        }
+    };
+    
+    const headerObserver = new MutationObserver(headerCallback);
+    const headerObserverConfig = { attributes: false, childList: true, subtree: false };
+    
+    headerObserver.observe(headerLayoutId, headerObserverConfig);
 }
+
+const footerLayoutId = document.getElementById("footer-layout");
+if(footerLayoutId) {
+    const footerCallback = (mutationsList, observer) => {
+        for(const mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                mutation.addedNodes.forEach(node => {
+                    if (node.nodeName === 'FOOTER') {
+                        mainContentHeight();
+                        observer.disconnect();
+                    }
+                });
+            }
+        }
+    };
+    
+    const footerObserver = new MutationObserver(footerCallback);
+    const footerObserverConfig = { attributes: false, childList: true, subtree: false };
+    
+    footerObserver.observe(footerLayoutId, footerObserverConfig);
+}
+
 
 window.addEventListener('resize', () => {
     mainContentHeight();
