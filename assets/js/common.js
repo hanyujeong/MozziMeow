@@ -144,6 +144,9 @@ const capitalizeFirstLetter = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
+const onscroll = (element, listener) => {
+    element.addEventListener('scroll', listener)
+}
 const reInitBacktotop = (backtotop) => {
     const toggleBacktotop = () => {
         if (window.scrollY > 100) {
@@ -195,19 +198,12 @@ const checkInterval = setInterval(() => {
 const footerLayoutId = document.getElementById("footer-layout");
 if(footerLayoutId) {
     const footerCallback = (mutationsList, observer) => {
-        let isBacktotop = false;
-        let isFooter = false;
         for(const mutation of mutationsList) {
             if (mutation.type === 'childList') {
                 mutation.addedNodes.forEach(node => {
-                    console.log(node.nodeName);
                     if (node.nodeName === 'FOOTER') {
                         mainContentHeight();
-                    }
-                    if(node.id === 'back-to-top-container') {
                         reInitBacktotop();
-                    }
-                    if(isBacktotop && isFooter) {
                         observer.disconnect();
                     }
                 });
