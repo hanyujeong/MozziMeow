@@ -163,7 +163,7 @@ const mainContentHeight = () => {
     const mainContent = document.getElementById('main-content');
     const footer = document.getElementsByTagName('footer');
 
-    if(mainContent === null || footer.length > 0) return;
+    if(mainContent === null || footer.length <= 0) return;
 
     const footerHeight = footer[0].clientHeight
     const navBarHeight = nav.length > 0 ? nav[0].clientHeight : 0;
