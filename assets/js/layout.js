@@ -16,6 +16,13 @@ function executeScript(html) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+    fetch("../layout/header.html")
+        .then(response => response.text())
+        .then(data => {
+            const headerHtml = executeScript(data);
+            document.getElementById("header-layout").innerHTML = headerHtml;
+        });
+
     fetch("../layout/footer.html")
         .then(response => response.text())
         .then(data => {
