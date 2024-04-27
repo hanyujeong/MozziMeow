@@ -20,7 +20,7 @@ const getHeader = () => {
         .then(response => response.text())
         .then(data => {
             const headerHtml = executeScript(data);
-            document.getElementById("header-layout").innerHTML = headerHtml;
+            document.getElementById("header-layout").insertAdjacentHTML("afterbegin", headerHtml);
             getFooter();
         });
 }
@@ -30,7 +30,7 @@ const getFooter = () => {
         .then(response => response.text())
         .then(data => {
             const footerHtml = executeScript(data);
-            document.getElementById("footer-layout").innerHTML = footerHtml;
+            document.getElementById("footer-layout").insertAdjacentHTML("afterbegin", footerHtml);
         });
 }
 
