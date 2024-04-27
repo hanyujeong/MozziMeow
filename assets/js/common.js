@@ -156,6 +156,20 @@ const setNavbarSurpportedContentlist = () => {
 
     listTag.insertAdjacentHTML("afterbegin", list);
 }
+setNavbarSurpportedContentlist();
+
+const mainContentHeight = () => {
+    const nav = document.getElementsByTagName('nav');
+    const mainContent = document.getElementById('main-content');
+    const footer = document.getElementsByTagName('footer');
+
+    if(mainContent === null || footer.length <= 0) return;
+
+    const footerHeight = footer[0].clientHeight
+    const navBarHeight = nav.length > 0 ? nav[0].clientHeight : 0;
+
+    mainContent.style.minHeight = window.innerHeight - footerHeight - navBarHeight + 'px';
+}
 
 const headerLayoutId = document.getElementById("header-layout");
 if(headerLayoutId) {
@@ -172,23 +186,10 @@ if(headerLayoutId) {
         }
     };
     
-    const observer = new MutationObserver(headerCallback);
-    const config = { attributes: false, childList: true, subtree: true };
+    const headerObserver = new MutationObserver(headerCallback);
+    const headerObserverConfig = { attributes: false, childList: true, subtree: false };
     
-    observer.observe(headerLayoutId, config);
-}
-
-const mainContentHeight = () => {
-    const nav = document.getElementsByTagName('nav');
-    const mainContent = document.getElementById('main-content');
-    const footer = document.getElementsByTagName('footer');
-
-    if(mainContent === null || footer.length <= 0) return;
-
-    const footerHeight = footer[0].clientHeight
-    const navBarHeight = nav.length > 0 ? nav[0].clientHeight : 0;
-
-    mainContent.style.minHeight = window.innerHeight - footerHeight - navBarHeight + 'px';
+    headerObserver.observe(headerLayoutId, headerObserverConfig);
 }
 
 const footerLayoutId = document.getElementById("footer-layout");
@@ -206,10 +207,10 @@ if(footerLayoutId) {
         }
     };
     
-    const observer = new MutationObserver(footerCallback);
-    const config = { attributes: false, childList: true, subtree: true };
+    const footerObserver = new MutationObserver(footerCallback);
+    const footerObserverConfig = { attributes: false, childList: true, subtree: false };
     
-    observer.observe(footerLayoutId, config);
+    footerObserver.observe(footerLayoutId, footerObserverConfig);
 }
 
 window.addEventListener('resize', () => {

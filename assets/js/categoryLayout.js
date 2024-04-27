@@ -31,29 +31,22 @@ async function executeScript(html) {
 }
 
 document.addEventListener("DOMContentLoaded", async function() {
-    fetch("../layout/category_head.html")
-        .then(response => response.text())
-        .then(data => {
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = data;
+    const headResponse = await fetch("../layout/category_head.html");
+    const headData = await headResponse.text();
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = headData;
 
-            Array.from(tempDiv.childNodes).forEach(node => {
-                document.head.appendChild(node);
-            });
-        });
+    Array.from(tempDiv.childNodes).forEach(node => {
+        document.head.appendChild(node);
+    });
 
-    fetch("../layout/category_header.html")
-        .then(response => response.text())
-        .then(async data => {
-            const headerHtml = await executeScript(data);
-            document.getElementById("header-layout").insertAdjacentHTML('beforeend', headerHtml);
-        });
+    const headerResponse = await fetch("../layout/category_header.html");
+    const headerData = await headerResponse.text();
+    const headerHtml = await executeScript(headerData);
+    document.getElementById("header-layout").insertAdjacentHTML('beforeend', headerHtml);
 
-    
-    fetch("../layout/category_footer.html")
-        .then(response => response.text())
-        .then(async data => {
-            const footerHtml = await executeScript(data);
-            document.getElementById("footer-layout").insertAdjacentHTML('beforeend', footerHtml);
-        });
+    const footerResponse = await fetch("../layout/category_footer.html");
+    const footerData = await footerResponse.text();
+    const footerHtml = await executeScript(footerData);
+    document.getElementById("footer-layout").insertAdjacentHTML('beforeend', footerHtml);
 });
