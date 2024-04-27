@@ -27,6 +27,18 @@ async function executeScript(html) {
 }
 
 document.addEventListener("DOMContentLoaded", async function() {
+    // head.html 파일을 불러옵니다.
+    fetch("../layout/head.html")
+        .then(response => response.text())
+        .then(data => {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = data;
+
+            Array.from(tempDiv.childNodes).forEach(node => {
+                document.head.appendChild(node);
+            });
+        });
+
     fetch("../layout/header.html")
         .then(response => response.text())
         .then(async data => {
