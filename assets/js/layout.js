@@ -27,7 +27,6 @@ async function executeScript(html) {
 }
 
 document.addEventListener("DOMContentLoaded", async function() {
-    // head.html 파일을 불러옵니다.
     fetch("../layout/head.html")
         .then(response => response.text())
         .then(data => {
@@ -35,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             tempDiv.innerHTML = data;
 
             Array.from(tempDiv.childNodes).forEach(node => {
-                document.head.appendChild(node);
+                document.head.insertAdjacentHTML('beforeend', node.outerHTML);
             });
         });
 
@@ -43,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         .then(response => response.text())
         .then(async data => {
             const headerHtml = await executeScript(data);
-            document.getElementById("header-layout").innerHTML = headerHtml;
+            document.getElementById("header-layout").insertAdjacentHTML('beforeend', headerHtml);
         });
 
     
@@ -51,6 +50,6 @@ document.addEventListener("DOMContentLoaded", async function() {
         .then(response => response.text())
         .then(async data => {
             const footerHtml = await executeScript(data);
-            document.getElementById("footer-layout").innerHTML = footerHtml;
+            document.getElementById("footer-layout").insertAdjacentHTML('beforeend', footerHtml);
         });
 });
