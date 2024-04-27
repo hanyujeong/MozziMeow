@@ -156,7 +156,27 @@ const setNavbarSurpportedContentlist = () => {
 
     listTag.insertAdjacentHTML("afterbegin", list);
 }
-setNavbarSurpportedContentlist();
+
+const headerLayoutId = document.getElementById("header-layout");
+if(headerLayoutId) {
+    const headerCallback = (mutationsList, observer) => {
+        for(const mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                mutation.addedNodes.forEach(node => {
+                    if (node.nodeName === 'NAV') {
+                        setNavbarSurpportedContentlist();
+                        observer.disconnect();
+                    }
+                });
+            }
+        }
+    };
+    
+    const observer = new MutationObserver(headerCallback);
+    const config = { attributes: false, childList: true, subtree: true };
+    
+    observer.observe(headerLayoutId, config);
+}
 
 const mainContentHeight = () => {
     const nav = document.getElementsByTagName('nav');
