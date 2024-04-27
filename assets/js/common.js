@@ -148,7 +148,7 @@ const onscroll = (element, listener) => {
     element.addEventListener('scroll', listener)
 }
 const reInitBacktotop = () => {
-    const backtotop = document.getElementById('back-to-top-container');
+    const backtotop = document.getElementsByClassName('back-to-top')[0];
     const toggleBacktotop = () => {
         if (window.scrollY > 100) {
             backtotop.classList.add('active')
