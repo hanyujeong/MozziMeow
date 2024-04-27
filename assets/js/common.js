@@ -144,22 +144,17 @@ const capitalizeFirstLetter = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
-const reInitBacktotop = () => {
-    const backtotopClassName = document.getElementsByClassName('.back-to-top')
-    if (backtotopClassName.length > 0) {
-        const backtotop = backtotopClassName[0];
-        const toggleBacktotop = () => {
-            if (window.scrollY > 100) {
-            backtotop.classList.add('active')
-            } else {
-            backtotop.classList.remove('active')
-            }
+const reInitBacktotop = (backtotop) => {
+    const toggleBacktotop = () => {
+        if (window.scrollY > 100) {
+        backtotop.classList.add('active')
+        } else {
+        backtotop.classList.remove('active')
         }
-        window.addEventListener('load', toggleBacktotop)
-        onscroll(document, toggleBacktotop)
     }
+    window.addEventListener('load', toggleBacktotop)
+    onscroll(document, toggleBacktotop)
 }
-reInitBacktotop();
 
 const setNavbarSurpportedContentlist = (listTag) => {
     //const navbarSupportedContent = document.getElementById('navbarSupportedContent');
@@ -200,11 +195,18 @@ const checkInterval = setInterval(() => {
 const footerLayoutId = document.getElementById("footer-layout");
 if(footerLayoutId) {
     const footerCallback = (mutationsList, observer) => {
+        let isBacktotop = false;
+        let isFooter = false;
         for(const mutation of mutationsList) {
             if (mutation.type === 'childList') {
                 mutation.addedNodes.forEach(node => {
                     if (node.nodeName === 'FOOTER') {
                         mainContentHeight();
+                    }
+                    if(node.nodeName === '#back-to-top-container') {
+                        reInitBacktotop();
+                    }
+                    if(isBacktotop && isFooter) {
                         observer.disconnect();
                     }
                 });
