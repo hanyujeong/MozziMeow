@@ -171,46 +171,48 @@ const mainContentHeight = () => {
     mainContent.style.minHeight = window.innerHeight - footerHeight - navBarHeight + 'px';
 }
 
-const headerLayoutId = document.getElementById("header-layout");
-if(headerLayoutId) {
-    const headerCallback = (mutationsList, observer) => {
-        for(const mutation of mutationsList) {
-            if (mutation.type === 'childList') {
-                mutation.addedNodes.forEach(node => {
-                    if (node.nodeName === 'NAV') {
-                        setNavbarSurpportedContentlist();
-                        observer.disconnect();
-                    }
-                });
+window.onload = () => {
+    const headerLayoutId = document.getElementById("header-layout");
+    if(headerLayoutId) {
+        const headerCallback = (mutationsList, observer) => {
+            for(const mutation of mutationsList) {
+                if (mutation.type === 'childList') {
+                    mutation.addedNodes.forEach(node => {
+                        if (node.nodeName === 'NAV') {
+                            setNavbarSurpportedContentlist();
+                            observer.disconnect();
+                        }
+                    });
+                }
             }
-        }
-    };
-    
-    const headerObserver = new MutationObserver(headerCallback);
-    const headerObserverConfig = { attributes: false, childList: true, subtree: false };
-    
-    headerObserver.observe(headerLayoutId, headerObserverConfig);
-}
+        };
+        
+        const headerObserver = new MutationObserver(headerCallback);
+        const headerObserverConfig = { attributes: false, childList: true, subtree: false };
+        
+        headerObserver.observe(headerLayoutId, headerObserverConfig);
+    }
 
-const footerLayoutId = document.getElementById("footer-layout");
-if(footerLayoutId) {
-    const footerCallback = (mutationsList, observer) => {
-        for(const mutation of mutationsList) {
-            if (mutation.type === 'childList') {
-                mutation.addedNodes.forEach(node => {
-                    if (node.nodeName === 'FOOTER') {
-                        mainContentHeight();
-                        observer.disconnect();
-                    }
-                });
+    const footerLayoutId = document.getElementById("footer-layout");
+    if(footerLayoutId) {
+        const footerCallback = (mutationsList, observer) => {
+            for(const mutation of mutationsList) {
+                if (mutation.type === 'childList') {
+                    mutation.addedNodes.forEach(node => {
+                        if (node.nodeName === 'FOOTER') {
+                            mainContentHeight();
+                            observer.disconnect();
+                        }
+                    });
+                }
             }
-        }
-    };
-    
-    const footerObserver = new MutationObserver(footerCallback);
-    const footerObserverConfig = { attributes: false, childList: true, subtree: false };
-    
-    footerObserver.observe(footerLayoutId, footerObserverConfig);
+        };
+        
+        const footerObserver = new MutationObserver(footerCallback);
+        const footerObserverConfig = { attributes: false, childList: true, subtree: false };
+        
+        footerObserver.observe(footerLayoutId, footerObserverConfig);
+    }
 }
 
 window.addEventListener('resize', () => {
