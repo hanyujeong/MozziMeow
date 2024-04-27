@@ -1,12 +1,17 @@
 function executeScript(html) {
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = html;
-    const scripts = tempDiv.getElementsByTagName("script");
+    const scripts = tempDiv.querySelectorAll("script");
     for (let script of scripts) {
         const newScript = document.createElement('script');
-        newScript.text = script.text;
+        if (script.src) {
+            newScript.src = script.src;
+        } else {
+            newScript.text = script.text;
+        }
         document.body.appendChild(newScript).parentNode.removeChild(newScript);
     }
+    scripts.forEach(s => s.remove());
     return tempDiv.innerHTML;
 }
 
