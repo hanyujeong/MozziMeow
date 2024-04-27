@@ -144,21 +144,6 @@ const capitalizeFirstLetter = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
-
-const mainContentHeight = () => {
-    const nav = document.getElementsByTagName('nav');
-    const mainContent = document.getElementById('main-content');
-    const footer = document.getElementsByTagName('footer');
-
-    if(mainContent === null || footer === null) return;
-
-    const footerHeight = footer[0].clientHeight
-    const navBarHeight = nav !== null ? nav[0].clientHeight : 0;
-
-    mainContent.style.minHeight = window.innerHeight - footerHeight - navBarHeight + 'px';
-}
-mainContentHeight();
-
 const setNavbarSurpportedContentlist = () => {
     const navbarSupportedContent = document.getElementById('navbarSupportedContent');
     const listTag = navbarSupportedContent.firstElementChild;
@@ -172,3 +157,17 @@ const setNavbarSurpportedContentlist = () => {
     listTag.insertAdjacentHTML("afterbegin", list);
 }
 setNavbarSurpportedContentlist();
+
+const mainContentHeight = () => {
+    const nav = document.getElementsByTagName('nav');
+    const mainContent = document.getElementById('main-content');
+    const footer = document.getElementsByTagName('footer');
+
+    if(mainContent === null || footer.length > 0) return;
+
+    const footerHeight = footer[0].clientHeight
+    const navBarHeight = nav.length > 0 ? nav[0].clientHeight : 0;
+
+    mainContent.style.minHeight = window.innerHeight - footerHeight - navBarHeight + 'px';
+}
+mainContentHeight();
