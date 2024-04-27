@@ -207,6 +207,9 @@ if(footerLayoutId) {
     const footerObserverConfig = { attributes: false, childList: true, subtree: false };
     
     footerObserver.observe(footerLayoutId, footerObserverConfig);
+} else {
+    // Setting for index.html
+    setNavbarSurpportedContentlist();
 }
 
 window.addEventListener('resize', () => {
