@@ -157,7 +157,6 @@ const mainContentHeight = () => {
 
     mainContent.style.minHeight = window.innerHeight - footerHeight - navBarHeight + 'px';
 }
-mainContentHeight();
 
 const setNavbarSurpportedContentlist = () => {
     const navbarSupportedContent = document.getElementById('navbarSupportedContent');
@@ -171,4 +170,8 @@ const setNavbarSurpportedContentlist = () => {
 
     listTag.insertAdjacentHTML("afterbegin", list);
 }
-setNavbarSurpportedContentlist();
+
+document.addEventListener("DOMContentLoaded", () => {
+    mainContentHeight();
+    setNavbarSurpportedContentlist();
+});
