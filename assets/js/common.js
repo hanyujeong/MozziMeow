@@ -171,23 +171,23 @@ const mainContentHeight = () => {
     mainContent.style.minHeight = window.innerHeight - footerHeight - navBarHeight + 'px';
 }
 
-const callback = function(mutationsList, observer) {
-    for(const mutation of mutationsList) {
-        if (mutation.type === 'childList') {
-            mutation.addedNodes.forEach(node => {
-                if (node.nodeName === 'FOOTER') {
-                    console.log('add footer tag');
-                    mainContentHeight();
-
-                    observer.disconnect();
-                }
-            });
-        }
-    }
-};
-
-const observer = new MutationObserver(callback);
-const config = { attributes: false, childList: true, subtree: true };
-
 const footerLayoutId = document.getElementById("footer-layout");
-observer.observe(footerLayoutId, config);
+if(footerLayoutId) {
+    const footerCallback = (mutationsList, observer) => {
+        for(const mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                mutation.addedNodes.forEach(node => {
+                    if (node.nodeName === 'FOOTER') {
+                        mainContentHeight();
+                        observer.disconnect();
+                    }
+                });
+            }
+        }
+    };
+    
+    const observer = new MutationObserver(footerCallback);
+    const config = { attributes: false, childList: true, subtree: true };
+    
+    observer.observe(footerLayoutId, config);
+}
