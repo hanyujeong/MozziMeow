@@ -160,9 +160,9 @@ const reInitBacktotop = () => {
     onscroll(document, toggleBacktotop)
 }
 
-const setNavbarSurpportedContentlist = (listTag) => {
-    //const navbarSupportedContent = document.getElementById('navbarSupportedContent');
-    //const listTag = navbarSupportedContent.firstElementChild;
+const setNavbarSurpportedContentlist = () => {
+    const navbarSupportedContent = document.getElementById('navbarSupportedContent');
+    const listTag = navbarSupportedContent.firstElementChild;
 
     const list = 
     `<li class="nav-item"><a class="nav-link" href=${selectListName !== 'index' ? '../../index.html' : './index.html'}>Home</a></li>
@@ -186,16 +186,6 @@ const mainContentHeight = () => {
     mainContent.style.minHeight = window.innerHeight - footerHeight - navBarHeight + 'px';
 }
 
-const checkInterval = setInterval(() => {
-    const navbarSupportedContent = document.getElementById('navbarSupportedContent');
-    const listTag = navbarSupportedContent.firstElementChild;
-
-    if (listTag) {
-      setNavbarSurpportedContentlist(listTag);
-      clearInterval(checkInterval);
-    }
-}, 500);
-
 const footerLayoutId = document.getElementById("footer-layout");
 if(footerLayoutId) {
     const footerCallback = (mutationsList, observer) => {
@@ -205,6 +195,7 @@ if(footerLayoutId) {
                     if (node.nodeName === 'FOOTER') {
                         mainContentHeight();
                         reInitBacktotop();
+                        setNavbarSurpportedContentlist();
                         observer.disconnect();
                     }
                 });
