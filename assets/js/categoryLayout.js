@@ -51,6 +51,22 @@ document.addEventListener("DOMContentLoaded", async function() {
     //     document.head.appendChild(node);
     // });
 
+    const headerResponse = await fetch("../layout/category_header.html");
+    const headerData = await headerResponse.text();
+    const headerHtml = await executeScript(headerData);
+    document.getElementById("header-layout").insertAdjacentHTML('beforeend', headerHtml);
+
+    // fetch("../layout/category_head.html")
+    //     .then(response => response.text())
+    //     .then(data => {
+    //         const tempDiv = document.createElement('div');
+    //         tempDiv.innerHTML = data;
+
+    //         Array.from(tempDiv.childNodes).forEach(node => {
+    //             document.head.appendChild(node);
+    //         });
+    //     });
+
     const footerResponse = await fetch("../layout/category_footer.html");
     const footerData = await footerResponse.text();
     const footerHtml = await executeScript(footerData);
@@ -68,21 +84,5 @@ document.addEventListener("DOMContentLoaded", async function() {
     //     .then(async data => {
     //         const headerHtml = await executeScript(data);
     //         document.getElementById("header-layout").insertAdjacentHTML('beforeend', headerHtml);
-    //     });
-
-    const headerResponse = await fetch("../layout/category_header.html");
-    const headerData = await headerResponse.text();
-    const headerHtml = await executeScript(headerData);
-    document.getElementById("header-layout").insertAdjacentHTML('beforeend', headerHtml);
-
-    // fetch("../layout/category_head.html")
-    //     .then(response => response.text())
-    //     .then(data => {
-    //         const tempDiv = document.createElement('div');
-    //         tempDiv.innerHTML = data;
-
-    //         Array.from(tempDiv.childNodes).forEach(node => {
-    //             document.head.appendChild(node);
-    //         });
     //     });
 });

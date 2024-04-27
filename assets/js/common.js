@@ -145,8 +145,8 @@ const capitalizeFirstLetter = (str) => {
 }
 
 const setNavbarSurpportedContentlist = () => {
-    const navbarSupportedContent = document.getElementById('navbarSupportedContent');
-    const listTag = navbarSupportedContent.firstElementChild;
+    //const navbarSupportedContent = document.getElementById('navbarSupportedContent');
+    //const listTag = navbarSupportedContent.firstElementChild;
 
     const list = 
     `<li class="nav-item"><a class="nav-link" href=${selectListName !== 'index' ? '../../index.html' : './index.html'}>Home</a></li>
@@ -170,31 +170,15 @@ const mainContentHeight = () => {
     mainContent.style.minHeight = window.innerHeight - footerHeight - navBarHeight + 'px';
 }
 
-const headerLayoutId = document.getElementById("header-layout");
-if(headerLayoutId) {
-    const headerCallback = (mutationsList, observer) => {
-        for(const mutation of mutationsList) {
-            if (mutation.type === 'childList') {
-                mutation.addedNodes.forEach(node => {
-                    if (node.nodeName === 'NAV') {
-                        setNavbarSurpportedContentlist();
-                        observer.disconnect();
-                    }
-                });
-            }
-        }
-    };
-    
-    const headerObserver = new MutationObserver(headerCallback);
-    const headerObserverConfig = { attributes: false, childList: true, subtree: false };
-    
-    headerObserver.observe(headerLayoutId, headerObserverConfig);
-}
-else
-{
-    // Apply to index.html
-    setNavbarSurpportedContentlist();
-}
+const checkInterval = setInterval(() => {
+    const navbarSupportedContent = document.getElementById('navbarSupportedContent');
+    const listTag = navbarSupportedContent.firstElementChild;
+
+    if (listTag) {
+      setNavbarSurpportedContentlist();
+      clearInterval(checkInterval);
+    }
+}, 500);
 
 const footerLayoutId = document.getElementById("footer-layout");
 if(footerLayoutId) {
