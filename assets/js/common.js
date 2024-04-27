@@ -191,3 +191,7 @@ if(footerLayoutId) {
     
     observer.observe(footerLayoutId, config);
 }
+
+window.addEventListener('resize', () => {
+    mainContentHeight();
+})
