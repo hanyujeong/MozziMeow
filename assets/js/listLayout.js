@@ -37,6 +37,13 @@ document.addEventListener("DOMContentLoaded", async function() {
                 document.head.appendChild(node);
             });
         });
+    
+    fetch("../layout/list_footer.html")
+        .then(response => response.text())
+        .then(async data => {
+            const footerHtml = await executeScript(data);
+            document.getElementById("footer-layout").insertAdjacentHTML('beforeend', footerHtml);
+        });
 
     fetch("../layout/list_header.html")
         .then(response => response.text())
@@ -45,11 +52,4 @@ document.addEventListener("DOMContentLoaded", async function() {
             document.getElementById("header-layout").insertAdjacentHTML('beforeend', headerHtml);
         });
 
-    
-    fetch("../layout/list_footer.html")
-        .then(response => response.text())
-        .then(async data => {
-            const footerHtml = await executeScript(data);
-            document.getElementById("footer-layout").insertAdjacentHTML('beforeend', footerHtml);
-        });
 });
