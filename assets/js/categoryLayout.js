@@ -2,18 +2,22 @@ async function executeScript(html) {
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = html;
 
-    const scripts = tempDiv.querySelectorAll("script");
+    const scripts = Array.from(tempDiv.querySelectorAll("script"));
     scripts.forEach(s => s.remove());
+
     const contentWithoutScripts = tempDiv.innerHTML;
+
+    await Promise.resolve(contentWithoutScripts);
 
     for (let script of scripts) {
         if (script.src) {
             await new Promise((resolve, reject) => {
                 const newScript = document.createElement('script');
                 newScript.src = script.src;
-                newScript.onload = () => resolve();
+                newScript.onload = resolve;
                 newScript.onerror = () => reject(new Error(`Script load error for ${script.src}`));
                 document.body.appendChild(newScript);
+                document.body.removeChild(newScript);
             });
         } else {
             const newScript = document.createElement('script');
