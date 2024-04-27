@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         .then(response => response.text())
         .then(async data => {
             const headerHtml = await executeScript(data);
-            document.getElementById("header").innerHTML = headerHtml;
+            document.getElementById("header-layout").innerHTML = headerHtml;
         });
 
     
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         .then(response => response.text())
         .then(async data => {
             const footerHtml = await executeScript(data);
-            document.getElementById("footer").innerHTML = footerHtml;
+            document.getElementById("footer-layout").innerHTML = footerHtml;
         });
 });
 
