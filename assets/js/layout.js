@@ -1,4 +1,4 @@
-function executeScript(html) {
+const executeScript = (html) => {
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = html;
     const scripts = tempDiv.querySelectorAll("script");
@@ -15,18 +15,26 @@ function executeScript(html) {
     return tempDiv.innerHTML;
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+const getHeader = () => {
     fetch("../layout/header.html")
         .then(response => response.text())
         .then(data => {
             const headerHtml = executeScript(data);
             document.getElementById("header-layout").innerHTML = headerHtml;
+            getFooter();
         });
+}
 
+const getFooter = () => {
     fetch("../layout/footer.html")
         .then(response => response.text())
         .then(data => {
             const footerHtml = executeScript(data);
             document.getElementById("footer-layout").innerHTML = footerHtml;
         });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    getHeader();
 });
+
