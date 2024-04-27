@@ -27,7 +27,7 @@ async function executeScript(html) {
 }
 
 document.addEventListener("DOMContentLoaded", async function() {
-    fetch("../layout/head.html")
+    fetch("../layout/list_head.html")
         .then(response => response.text())
         .then(data => {
             const tempDiv = document.createElement('div');
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             });
         });
 
-    fetch("../layout/header.html")
+    fetch("../layout/list_header.html")
         .then(response => response.text())
         .then(async data => {
             const headerHtml = await executeScript(data);
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         });
 
     
-    fetch("../layout/footer.html")
+    fetch("../layout/list_footer.html")
         .then(response => response.text())
         .then(async data => {
             const footerHtml = await executeScript(data);
