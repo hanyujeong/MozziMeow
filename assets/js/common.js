@@ -200,10 +200,11 @@ if(footerLayoutId) {
         for(const mutation of mutationsList) {
             if (mutation.type === 'childList') {
                 mutation.addedNodes.forEach(node => {
+                    console.log(node.nodeName);
                     if (node.nodeName === 'FOOTER') {
                         mainContentHeight();
                     }
-                    if(node.nodeName === '#back-to-top-container') {
+                    if(node.id === 'back-to-top-container') {
                         reInitBacktotop();
                     }
                     if(isBacktotop && isFooter) {
