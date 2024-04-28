@@ -52,7 +52,7 @@ const categoryCardHTML = (imgPath, viewNum, selectListName) => {
     `<div class="col">
         <div class="card shadow-sm">
             <label class="custom-cursor" for="view-${viewNum}">
-                <img src="${imgPath}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Card image cap">
+                <img src="${imgPath}" class="bd-placeholder-img card-img-top object-fit-cover" width="100%" height="225" alt="Card image cap">
                 <div class="card-body">
                     <div class="my-2">
                         <p class="card-text fw-bolder">${capitalizeFirstLetter(replaceUnderBarToSpace(selectListName))}</p>
