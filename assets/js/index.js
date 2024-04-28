@@ -21,9 +21,9 @@ const categoryCardHTML = (categoryName, imgPath, viewPath, num) => {
             <label class="custom-cursor" for="view-${num}">
                 <img src="${imgPath}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="Card image cap">
                 <div class="card-body">
-                    <span>
+                    <div class="my-2">
                         <h3 class="card-text fw-bolder">${categoryName.toUpperCase()}</h3>
-                    </span>
+                    </div>
                     <div class="d-flex justify-content-end align-items-center">
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-outline-secondary" id="view-${num}" onclick="location.href='${viewPath}'">View</button>
