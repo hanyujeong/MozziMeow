@@ -8,7 +8,7 @@ const categoryListDictionary = {
         'cats_hiding_in_flowers', 'a_cat_lying_on_the_grass', 'cats_running_through_the_yellow_grass', 'cats_playing_music_in_the_flower_garden',
     ],
     'food' : [
-        'santa_cats_cake', 
+        'It\'s_cake_day', 'santa_cats_cake', 
     ],
     'daily' : [
         'day_by_day', 
