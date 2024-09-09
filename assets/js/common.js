@@ -11,7 +11,7 @@ const categoryListDictionary = {
         'It\'s_cake_day', 'santa_cats_cake', 
     ],
     'daily' : [
-        'day_by_day', 
+        'rainy_day', 'day_by_day', 
     ],
 }
 
