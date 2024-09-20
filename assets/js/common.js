@@ -170,9 +170,9 @@ const setNavbarSurpportedContentlist = () => {
     const isHome = selectListName === 'index' || !selectListName;
     const list = 
     `<li class="nav-item"><a class="nav-link" href=${isHome ? './' : '../../'}>Home</a></li>
-    <li class="nav-item"><a class="nav-link" href="https://blog.naver.com/profile/intro.naver?blogId=shootfruit">About</a></li>
-    <li class="nav-item"><a class="nav-link" href="https://blog.naver.com/guestbook/GuestBookList.naver?blogId=shootfruit&skinType=&skinId=&from=menu">Contact</a></li>
-    <li class="nav-item"><a class="nav-link active" aria-current="page" href="https://blog.naver.com/PostList.naver?blogId=shootfruit&from=postList&categoryNo=25">Blog</a></li>`;
+    <li class="nav-item"><a class="nav-link" href="https://blog.naver.com/profile/intro.naver?blogId=mozzi_meow">About</a></li>
+    <li class="nav-item"><a class="nav-link" href="https://blog.naver.com/guestbook/GuestBookList.naver?blogId=mozzi_meow&skinType=&skinId=&from=menu">Contact</a></li>
+    <li class="nav-item"><a class="nav-link active" aria-current="page" href="https://blog.naver.com/PostList.naver?blogId=mozzi_meow&from=postList&categoryNo=25">Blog</a></li>`;
 
     listTag.insertAdjacentHTML("afterbegin", list);
 }
