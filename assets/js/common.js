@@ -4,7 +4,7 @@ const imageFolderPath = './assets/img/';
 // ====== Input Your Category and Category's list ===== //
 const categoryListDictionary = {
     'webtoon' : [
-        'i_want_to_draw_even_if_i_can_t', 'bread'
+        'i_want_to_draw', 'bread'
     ],
     'nature' : [
         'oh_my_hat', 'a_cat_couple_on_a_beach_date', 'happy_cat_couple_in_flowers', 'dancing_dancing_cats', 'white_christmas_cat_house',
